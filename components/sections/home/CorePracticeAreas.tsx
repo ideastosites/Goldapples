@@ -20,7 +20,7 @@ export function CorePracticeAreas() {
           {corePracticeAreas.map((area, i) => (
             <Reveal key={area.title} delay={i * 0.05}>
               <Card className="h-full">
-                <span className="text-gold-deep font-mono text-xs font-semibold">
+                <span className="text-graphite border-gold-deep border-l-2 pl-2 font-mono text-xs font-semibold">
                   {area.number}
                 </span>
                 <h3 className="text-ink mt-4 font-sans text-xl font-semibold">

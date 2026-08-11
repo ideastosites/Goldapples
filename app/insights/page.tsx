@@ -6,7 +6,7 @@ import { InsightsGrid } from "@/components/sections/InsightsGrid";
 import { insightsIntro } from "@/content/insights";
 
 export const metadata: Metadata = {
-  title: seo.insights.title,
+  title: { absolute: seo.insights.title },
   description: seo.insights.description,
 };
 

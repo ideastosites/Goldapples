@@ -17,7 +17,7 @@ import {
 } from "@/content/about";
 
 export const metadata: Metadata = {
-  title: seo.about.title,
+  title: { absolute: seo.about.title },
   description: seo.about.description,
 };
 
@@ -106,7 +106,7 @@ export default function AboutPage() {
                 delay={i * 0.04}
                 className="grid gap-3 py-8 md:grid-cols-12 md:items-baseline md:gap-8"
               >
-                <span className="text-gold-deep font-mono text-sm md:col-span-1">
+                <span className="text-graphite border-gold-deep border-l-2 pl-2 font-mono text-sm md:col-span-1">
                   0{i + 1}
                 </span>
                 <h3 className="text-ink font-sans text-lg font-semibold md:col-span-4">
@@ -140,7 +140,7 @@ export default function AboutPage() {
             </Reveal>
             <Reveal delay={0.1} className="lg:col-span-7">
               <h2 className="text-ink font-serif text-3xl">{founder.name}</h2>
-              <p className="text-gold-deep mt-2 text-sm font-semibold tracking-wide">
+              <p className="text-graphite mt-2 text-sm font-semibold tracking-wide">
                 {founder.title}
               </p>
               <p className="text-steel mt-6 max-w-[62ch] text-lg leading-relaxed">

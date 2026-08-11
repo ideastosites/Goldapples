@@ -11,7 +11,7 @@ export function Stepper({ steps }: { steps: Step[] }) {
           delay={i * 0.05}
           className="relative flex flex-col gap-3"
         >
-          <span className="text-gold-deep font-mono text-sm font-semibold">
+          <span className="text-graphite border-gold-deep border-l-2 pl-2 font-mono text-sm font-semibold">
             {step.number}
           </span>
           <h3 className="text-ink font-sans text-lg font-semibold">{step.title}</h3>

@@ -15,7 +15,7 @@ import {
 } from "@/content/advisory";
 
 export const metadata: Metadata = {
-  title: seo.advisory.title,
+  title: { absolute: seo.advisory.title },
   description: seo.advisory.description,
 };
 

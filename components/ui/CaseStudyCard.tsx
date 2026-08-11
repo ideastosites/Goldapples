@@ -29,7 +29,7 @@ export function CaseStudyCard({
         <span className="text-steel text-xs font-semibold tracking-[0.1em] uppercase">
           {study.sector}
         </span>
-        <h3 className="text-ink mt-2 font-serif text-2xl leading-snug">{study.title}</h3>
+        <h2 className="text-ink mt-2 font-serif text-2xl leading-snug">{study.title}</h2>
       </div>
       <div className="grid sm:grid-cols-2">
         {parts.map((part, i) => (
@@ -39,7 +39,7 @@ export function CaseStudyCard({
               i < 2 ? "border-b" : ""
             } ${part.key === "keyInsight" ? "bg-champagne/40" : ""}`}
           >
-            <span className="text-gold-deep text-xs font-semibold tracking-[0.08em] uppercase">
+            <span className="text-graphite border-gold-deep border-l-2 pl-2 text-xs font-semibold tracking-[0.08em] uppercase">
               {part.label}
             </span>
             <p

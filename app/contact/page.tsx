@@ -8,7 +8,7 @@ import { contactContent } from "@/content/contact";
 import { footerContent } from "@/content/site";
 
 export const metadata: Metadata = {
-  title: seo.contact.title,
+  title: { absolute: seo.contact.title },
   description: seo.contact.description,
 };
 

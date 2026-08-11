@@ -7,11 +7,15 @@ export function Eyebrow({
   tone?: "gold" | "champagne";
   className?: string;
 }) {
-  const color = tone === "gold" ? "text-gold-deep" : "text-gold";
+  const textColor = tone === "gold" ? "text-graphite" : "text-champagne";
   return (
     <p
-      className={`font-mono text-xs font-semibold tracking-[0.16em] uppercase ${color} ${className}`}
+      className={`flex items-center gap-2 font-mono text-xs font-semibold tracking-[0.16em] uppercase ${textColor} ${className}`}
     >
+      <span
+        aria-hidden="true"
+        className="bg-gold-deep inline-block h-1.5 w-1.5 rounded-full"
+      />
       {children}
     </p>
   );

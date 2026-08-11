@@ -37,7 +37,7 @@ export function Footer() {
           </nav>
 
           <div className="flex flex-col gap-3 text-sm lg:col-span-3">
-            <span className="text-steel text-xs font-semibold tracking-[0.08em] uppercase">
+            <span className="text-gold text-xs font-semibold tracking-[0.08em] uppercase">
               Contact
             </span>
             <a

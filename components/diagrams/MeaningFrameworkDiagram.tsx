@@ -39,7 +39,7 @@ export function MeaningFrameworkDiagram() {
               x={x}
               y={110}
               textAnchor="middle"
-              className={`font-sans text-[11px] ${isLast ? "fill-gold-deep font-semibold" : "fill-steel"}`}
+              className={`font-sans text-[11px] ${isLast ? "fill-ink font-semibold" : "fill-steel"}`}
             >
               {stage}
             </text>

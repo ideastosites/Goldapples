@@ -59,11 +59,11 @@ export function InsightsGrid() {
                 <span className="text-steel text-xs font-semibold tracking-[0.08em] uppercase">
                   {category?.label}
                 </span>
-                <h3 className="text-ink mt-3 font-serif text-xl leading-snug">
+                <h2 className="text-ink mt-3 font-serif text-xl leading-snug">
                   {article.title}
-                </h3>
+                </h2>
               </div>
-              <span className="text-gold-deep mt-6 text-xs font-semibold tracking-[0.08em] uppercase">
+              <span className="text-graphite border-gold-deep mt-6 border-l-2 pl-2 text-xs font-semibold tracking-[0.08em] uppercase">
                 Coming soon — placeholder entry
               </span>
             </Reveal>

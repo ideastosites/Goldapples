@@ -80,7 +80,7 @@ export function PhysicsOfCommunicationDiagram() {
               y={node.y + 34}
               textAnchor="middle"
               className={`font-sans text-[11px] transition-colors duration-150 ${
-                isActive ? "fill-gold-deep font-semibold" : "fill-steel"
+                isActive ? "fill-ink font-semibold" : "fill-steel"
               }`}
             >
               {node.label}

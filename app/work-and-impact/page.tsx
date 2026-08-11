@@ -8,7 +8,7 @@ import { CaseStudyCard } from "@/components/ui/CaseStudyCard";
 import { workImpactIntro, caseStudies, workImpactCta } from "@/content/workImpact";
 
 export const metadata: Metadata = {
-  title: seo.workAndImpact.title,
+  title: { absolute: seo.workAndImpact.title },
   description: seo.workAndImpact.description,
 };
 
@@ -22,7 +22,7 @@ export default function WorkAndImpactPage() {
         <p className="text-steel mt-6 max-w-[62ch] text-lg leading-relaxed">
           {workImpactIntro.body}
         </p>
-        <Reveal as="p" delay={0.08} className="text-steel/70 mt-4 text-sm italic">
+        <Reveal as="p" delay={0.08} className="text-steel mt-4 text-sm italic">
           {workImpactIntro.note}
         </Reveal>
       </PageIntro>

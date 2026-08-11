@@ -12,7 +12,7 @@ import { WhyGoldapples } from "@/components/sections/home/WhyGoldapples";
 import { FinalCta } from "@/components/sections/home/FinalCta";
 
 export const metadata: Metadata = {
-  title: seo.home.title,
+  title: { absolute: seo.home.title },
   description: seo.home.description,
 };
 

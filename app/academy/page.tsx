@@ -17,7 +17,7 @@ import {
 } from "@/content/academy";
 
 export const metadata: Metadata = {
-  title: seo.academy.title,
+  title: { absolute: seo.academy.title },
   description: seo.academy.description,
 };
 
@@ -28,7 +28,7 @@ const accordionItems = programmeCategories.map((p) => ({
     <div className="flex flex-col gap-2">
       <p>{p.audience}</p>
       {p.body && <p>{p.body}</p>}
-      <p className="text-steel/80 text-sm">{p.themes}</p>
+      <p className="text-steel text-sm">{p.themes}</p>
     </div>
   ),
 }));

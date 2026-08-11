@@ -11,7 +11,7 @@ import { LeadershipAlignmentDiagram } from "@/components/diagrams/LeadershipAlig
 import { LeadershipCommunicationLabDiagram } from "@/components/diagrams/LeadershipCommunicationLabDiagram";
 
 export const metadata: Metadata = {
-  title: seo.frameworks.title,
+  title: { absolute: seo.frameworks.title },
   description: seo.frameworks.description,
 };
 
@@ -45,7 +45,7 @@ export default function FrameworksPage() {
             >
               <Container className="grid gap-10 lg:grid-cols-12 lg:items-center">
                 <Reveal className={`lg:col-span-6 ${i % 2 === 1 ? "lg:order-2" : ""}`}>
-                  <span className="text-gold-deep font-mono text-xs font-semibold">
+                  <span className="text-graphite border-gold-deep border-l-2 pl-2 font-mono text-xs font-semibold">
                     0{i + 1}
                   </span>
                   <h2 className="text-ink mt-3 font-serif text-3xl leading-tight lg:text-4xl">

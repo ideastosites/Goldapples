@@ -14,7 +14,7 @@ import {
 } from "@/content/developmentCommunication";
 
 export const metadata: Metadata = {
-  title: seo.developmentCommunication.title,
+  title: { absolute: seo.developmentCommunication.title },
   description: seo.developmentCommunication.description,
 };
 
@@ -45,6 +45,9 @@ export default function DevelopmentCommunicationPage() {
         <Container>
           <Reveal>
             <Eyebrow>{ourApproach.eyebrow}</Eyebrow>
+            <h2 className="text-ink mt-4 max-w-[24ch] font-serif text-3xl leading-tight lg:text-4xl">
+              {ourApproach.eyebrow}
+            </h2>
           </Reveal>
           <div className="mt-10 grid gap-6 md:grid-cols-2 lg:grid-cols-4">
             {ourApproach.points.map((point, i) => (
