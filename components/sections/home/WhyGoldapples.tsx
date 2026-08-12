@@ -3,9 +3,15 @@ import { Reveal } from "@/components/ui/Reveal";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 import { whyGoldapples } from "@/content/home";
 
+const stats = [
+  { value: "30+", label: "Years of communication and media experience" },
+  { value: "6", label: "Original communication frameworks" },
+  { value: "4", label: "Core practice areas" },
+];
+
 export function WhyGoldapples() {
   return (
-    <section className="border-graphite/10 border-t py-28 lg:py-36">
+    <section className="border-graphite/10 border-t py-24 lg:py-32">
       <Container className="grid gap-10 lg:grid-cols-12">
         <div className="lg:col-span-4">
           <Reveal>
@@ -26,6 +32,27 @@ export function WhyGoldapples() {
           >
             {whyGoldapples.closing}
           </Reveal>
+
+          <div className="mt-12 grid grid-cols-3 gap-4">
+            {stats.map((stat, i) => (
+              <Reveal
+                key={stat.label}
+                delay={0.1 + i * 0.05}
+                className={`rounded-[3px] p-6 ${
+                  i === 1
+                    ? "from-gold-deep to-gold text-ink bg-linear-to-br"
+                    : "bg-ink text-white"
+                }`}
+              >
+                <span className="font-serif text-4xl">{stat.value}</span>
+                <p
+                  className={`mt-2 text-xs leading-snug ${i === 1 ? "text-ink/70" : "text-champagne/70"}`}
+                >
+                  {stat.label}
+                </p>
+              </Reveal>
+            ))}
+          </div>
         </div>
       </Container>
     </section>

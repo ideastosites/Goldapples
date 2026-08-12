@@ -5,7 +5,7 @@ import { openingBelief } from "@/content/home";
 
 export function OpeningBelief() {
   return (
-    <section className="py-28 lg:py-36">
+    <section className="bg-champagne py-24 lg:py-32">
       <Container className="grid gap-10 lg:grid-cols-12">
         <div className="lg:col-span-4">
           <Reveal>
@@ -21,7 +21,7 @@ export function OpeningBelief() {
               key={p}
               as="p"
               delay={i * 0.05}
-              className="text-steel max-w-[68ch] text-lg leading-relaxed"
+              className="text-graphite max-w-[68ch] text-lg leading-relaxed"
             >
               {p}
             </Reveal>

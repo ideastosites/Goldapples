@@ -3,8 +3,25 @@ import { Reveal } from "@/components/ui/Reveal";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 import { Button } from "@/components/ui/Button";
 import { DarkSection } from "@/components/ui/DarkSection";
-import { FrameworkGlyph } from "@/components/ui/FrameworkGlyph";
+import { IconSwatch } from "@/components/ui/IconSwatch";
+import {
+  IconFramework,
+  IconMeaning,
+  IconAlignment,
+  IconLab,
+  IconDiagnostics,
+  IconDesign,
+} from "@/components/icons";
 import { ourThinking } from "@/content/home";
+
+const frameworkIcons = [
+  IconDesign,
+  IconFramework,
+  IconAlignment,
+  IconLab,
+  IconMeaning,
+  IconDiagnostics,
+];
 
 export function OurThinking() {
   return (
@@ -26,11 +43,17 @@ export function OurThinking() {
             </Reveal>
           </div>
 
-          <div className="grid grid-cols-1 gap-px sm:grid-cols-2 lg:col-span-7">
+          <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:col-span-7">
             {ourThinking.frameworks.map((name, i) => (
               <Reveal key={name} delay={i * 0.05}>
-                <div className="border-champagne/10 flex h-full flex-col gap-4 border p-6">
-                  <FrameworkGlyph variant={i} dark className="h-10 w-10" />
+                <div
+                  className={`flex h-full flex-col gap-4 rounded-[3px] p-6 ${
+                    i % 2 === 0
+                      ? "from-gold-deep/25 to-gold/10 border border-white/10 bg-linear-to-br"
+                      : "border border-white/10 bg-white/5"
+                  }`}
+                >
+                  <IconSwatch icon={frameworkIcons[i]} tone="gold" />
                   <span className="font-serif text-lg text-white">{name}</span>
                 </div>
               </Reveal>

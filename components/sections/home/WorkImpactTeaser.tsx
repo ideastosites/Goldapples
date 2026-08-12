@@ -7,7 +7,7 @@ import { workImpactTeaser } from "@/content/home";
 
 export function WorkImpactTeaser() {
   return (
-    <section className="border-graphite/10 border-t py-28 lg:py-36">
+    <section className="bg-champagne py-24 lg:py-32">
       <Container className="grid gap-10 lg:grid-cols-12">
         <div className="lg:col-span-5">
           <Reveal>
@@ -15,10 +15,10 @@ export function WorkImpactTeaser() {
             <h2 className="text-ink mt-4 max-w-[16ch] font-serif text-3xl leading-tight lg:text-4xl">
               {workImpactTeaser.heading}
             </h2>
-            <p className="text-steel mt-5 max-w-[52ch] text-lg leading-relaxed">
+            <p className="text-graphite mt-5 max-w-[52ch] text-lg leading-relaxed">
               {workImpactTeaser.body}
             </p>
-            <Button href={workImpactTeaser.cta.href} variant="secondary" className="mt-8">
+            <Button href={workImpactTeaser.cta.href} variant="primary" className="mt-8">
               {workImpactTeaser.cta.label}
             </Button>
           </Reveal>

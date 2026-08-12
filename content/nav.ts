@@ -4,16 +4,16 @@ export type NavLink = {
   description?: string;
 };
 
-export type NavGroup = {
+export type ServiceCategory = {
+  id: string;
   label: string;
   href: string;
   items: NavLink[];
 };
 
-export const primaryNav: NavGroup[] = [
-  { label: "Home", href: "/", items: [] },
-  { label: "About", href: "/about", items: [] },
+export const serviceCategories: ServiceCategory[] = [
   {
+    id: "advisory",
     label: "Advisory",
     href: "/advisory",
     items: [
@@ -50,6 +50,7 @@ export const primaryNav: NavGroup[] = [
     ],
   },
   {
+    id: "academy",
     label: "Academy",
     href: "/academy",
     items: [
@@ -85,8 +86,45 @@ export const primaryNav: NavGroup[] = [
       },
     ],
   },
-  { label: "Development Communication", href: "/development-communication", items: [] },
   {
+    id: "development-communication",
+    label: "Development Communication",
+    href: "/development-communication",
+    items: [
+      {
+        label: "Programme Communication Strategy",
+        href: "/development-communication#programme-communication-strategy",
+        description:
+          "Communication approaches that support implementation, visibility, stakeholder engagement and behavioural outcomes.",
+      },
+      {
+        label: "Media Engagement and Capacity Building",
+        href: "/development-communication#media-engagement-and-capacity-building",
+        description:
+          "Media training, journalist workshops, editorial engagement and public-interest reporting interventions.",
+      },
+      {
+        label: "Behaviour and Stakeholder Communication",
+        href: "/development-communication#behaviour-and-stakeholder-communication",
+        description:
+          "Understanding audiences and designing messages that respond to real concerns, motivations and trust conditions.",
+      },
+      {
+        label: "Public Narrative and Storytelling",
+        href: "/development-communication#public-narrative-and-storytelling",
+        description:
+          "Moving beyond technical reporting into human-centred stories that show why issues matter.",
+      },
+      {
+        label: "Governance and Reform Communication",
+        href: "/development-communication#governance-and-reform-communication",
+        description:
+          "Communication around policy, governance, accountability, service delivery, climate, social protection, public health and institutional reform.",
+      },
+    ],
+  },
+  {
+    id: "frameworks",
     label: "Frameworks",
     href: "/frameworks",
     items: [
@@ -128,9 +166,13 @@ export const primaryNav: NavGroup[] = [
       },
     ],
   },
-  { label: "Work and Impact", href: "/work-and-impact", items: [] },
-  { label: "Insights", href: "/insights", items: [] },
-  { label: "Contact", href: "/contact", items: [] },
+];
+
+export const primaryNav = [
+  { label: "About", href: "/about" },
+  { label: "Work and Impact", href: "/work-and-impact" },
+  { label: "Insights", href: "/insights" },
+  { label: "Contact", href: "/contact" },
 ];
 
 export const bookConsultationCta = { label: "Book a Consultation", href: "/contact" };

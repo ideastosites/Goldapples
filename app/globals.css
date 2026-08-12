@@ -31,6 +31,16 @@
     var(--color-gold-deep),
     var(--color-gold)
   );
+  --background-image-ink-gold-deep: linear-gradient(
+    135deg,
+    var(--color-ink),
+    var(--color-gold-deep)
+  );
+  --background-image-champagne-white: linear-gradient(
+    180deg,
+    var(--color-champagne),
+    #ffffff
+  );
 
   --animate-grain-drift: grain-drift 8s steps(6) infinite;
 }
@@ -41,6 +51,15 @@
   }
   100% {
     transform: translate(-4%, -4%);
+  }
+}
+
+@keyframes marquee {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
   }
 }
 

@@ -1,12 +1,14 @@
 import { Container } from "@/components/ui/Container";
 import { Reveal } from "@/components/ui/Reveal";
 import { Button } from "@/components/ui/Button";
-import { DarkSection } from "@/components/ui/DarkSection";
 import { finalCta } from "@/content/home";
 
 export function FinalCta() {
   return (
-    <DarkSection className="py-28 lg:py-36">
+    <section
+      data-dark-section
+      className="from-ink to-gold-deep bg-linear-to-br py-28 lg:py-36"
+    >
       <Container className="flex flex-col items-start gap-6">
         <Reveal
           as="h2"
@@ -17,7 +19,7 @@ export function FinalCta() {
         <Reveal
           as="p"
           delay={0.05}
-          className="text-champagne/70 max-w-[56ch] text-lg leading-relaxed"
+          className="max-w-[56ch] text-lg leading-relaxed text-white/80"
         >
           {finalCta.body}
         </Reveal>
@@ -27,6 +29,6 @@ export function FinalCta() {
           </Button>
         </Reveal>
       </Container>
-    </DarkSection>
+    </section>
   );
 }
