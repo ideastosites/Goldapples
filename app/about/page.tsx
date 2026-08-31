@@ -3,6 +3,7 @@ import { seo } from "@/content/seo";
 import { Container } from "@/components/ui/Container";
 import { Reveal } from "@/components/ui/Reveal";
 import { Eyebrow } from "@/components/ui/Eyebrow";
+import { SignalDivider } from "@/components/ui/SignalDivider";
 import { DarkSection } from "@/components/ui/DarkSection";
 import { ClosingCta } from "@/components/sections/ClosingCta";
 import Image from "next/image";
@@ -85,36 +86,34 @@ export default function AboutPage() {
         </Container>
       </DarkSection>
 
-      {/* 2. Philosophy (Champagne band) */}
-      <section className="bg-champagne py-24 lg:py-32">
-        <Container className="max-w-4xl text-center">
-          <Reveal>
-            <Eyebrow>{ourPhilosophy.eyebrow}</Eyebrow>
-          </Reveal>
-          <Reveal delay={0.1}>
-            <p className="text-ink mt-8 font-serif text-2xl md:text-4xl leading-tight">
-              {ourPhilosophy.heading}
-            </p>
-          </Reveal>
-          <Reveal delay={0.2}>
-            <p className="text-ink/80 mt-8 text-[17px] md:text-lg leading-relaxed max-w-[60ch] mx-auto">
-              {ourPhilosophy.body}
-            </p>
-          </Reveal>
-        </Container>
-      </section>
-
-      {/* 3. Evolution (Timeline on light background) */}
-      <section className="bg-[#FAF8F5] py-24 lg:py-32">
-        <Container className="grid gap-12 lg:grid-cols-12 items-start">
-          <div className="lg:col-span-12 max-w-4xl">
+      {/* 2. Evolution (Champagne band, centered layout) */}
+      <section className="bg-champagne py-32 lg:py-40 text-center">
+        <Container>
+          <div className="max-w-[800px] mx-auto">
             <Reveal>
-              <Eyebrow>{ourEvolution.eyebrow}</Eyebrow>
+              <p className="font-mono text-xs font-semibold tracking-[0.2em] uppercase text-gold-deep mb-6">
+                {ourEvolution.eyebrow}
+              </p>
             </Reveal>
-            <div className="mt-8 flex flex-col gap-6">
-              {ourEvolution.paragraphs.map((p, i) => (
-                <Reveal key={i} delay={i * 0.1} className="text-ink/80 text-[18px] leading-relaxed">
-                  <p>{p}</p>
+
+            <Reveal delay={0.1}>
+              <SignalDivider tone="gold" className="mb-12" />
+            </Reveal>
+
+            <div className="space-y-6 text-left max-w-[65ch] mx-auto">
+              <Reveal as="div" delay={0.2} className="relative">
+                <p className="text-graphite text-[19px] leading-relaxed">
+                  <span className="float-left text-6xl font-serif text-gold-deep leading-[0.8] pr-3 pt-2 pb-1">
+                    {ourEvolution.paragraphs[0].charAt(0)}
+                  </span>
+                  <span className="sr-only">{ourEvolution.paragraphs[0].charAt(0)}</span>
+                  {ourEvolution.paragraphs[0].slice(1)}
+                </p>
+              </Reveal>
+              
+              {ourEvolution.paragraphs.slice(1).map((p, i) => (
+                <Reveal key={i} as="p" delay={0.3 + (i * 0.1)} className="text-graphite text-[19px] leading-relaxed">
+                  {p}
                 </Reveal>
               ))}
             </div>
@@ -122,14 +121,25 @@ export default function AboutPage() {
         </Container>
       </section>
 
-      {/* 4. Photo Break */}
-      <section className="bg-ink h-[50vh] min-h-[400px] w-full relative">
-         <Image 
-            src="/assets/photography/event-speaker.jpg" 
-            alt="Event speaker" 
-            fill 
-            className="object-cover opacity-80" 
-         />
+      {/* 3. Philosophy (Dark layout) */}
+      <section className="bg-ink py-24 lg:py-32">
+        <Container className="grid gap-12 lg:grid-cols-12 items-start">
+          <div className="lg:col-span-4">
+            <Reveal>
+              <Eyebrow className="text-gold-deep">{ourPhilosophy.eyebrow}</Eyebrow>
+              <h2 className="text-white mt-4 max-w-[20ch] font-serif text-3xl leading-tight lg:text-[2.5rem]">
+                {ourPhilosophy.heading}
+              </h2>
+            </Reveal>
+          </div>
+          <div className="lg:col-span-6 lg:col-start-7 pt-2 lg:pt-16">
+            <Reveal delay={0.2}>
+              <p className="text-white/70 text-[17px] leading-relaxed max-w-[50ch]">
+                {ourPhilosophy.body}
+              </p>
+            </Reveal>
+          </div>
+        </Container>
       </section>
 
       {/* 5. What Makes Us Different (Grid of colored boxes) */}
