@@ -1,17 +1,13 @@
 import type { Metadata } from "next";
 import { seo } from "@/content/seo";
-import { PageHero } from "@/components/sections/PageHero";
 import { Container } from "@/components/ui/Container";
 import { Reveal } from "@/components/ui/Reveal";
+import { Eyebrow } from "@/components/ui/Eyebrow";
+import { DarkSection } from "@/components/ui/DarkSection";
 import { Button } from "@/components/ui/Button";
-import { IconSwatch } from "@/components/ui/IconSwatch";
-import {
-  IconAdvisory,
-  IconAlignment,
-  IconGovernment,
-  IconCrisis,
-  IconDiagnostics,
-} from "@/components/icons";
+
+import Image from "next/image";
+
 import {
   advisoryIntro,
   advisoryAreas,
@@ -24,94 +20,108 @@ export const metadata: Metadata = {
   description: seo.advisory.description,
 };
 
-const advisoryIcons = [
-  IconAdvisory,
-  IconAlignment,
-  IconGovernment,
-  IconCrisis,
-  IconDiagnostics,
-];
 
-// Replicating the alternating dark/beige card styles seen in the screenshot
-const cardStyles = [
-  {
-    bg: "bg-ink text-champagne",
-    iconBg: "bg-gold-deep/20 text-gold",
-    border: "border-graphite/20",
-    titleColor: "text-white",
-    bodyColor: "text-champagne/70",
-  },
-  {
-    bg: "bg-champagne/40 text-graphite",
-    iconBg: "bg-white text-gold-deep",
-    border: "border-graphite/10",
-    titleColor: "text-ink",
-    bodyColor: "text-steel",
-  },
-  {
-    bg: "bg-champagne/40 text-graphite",
-    iconBg: "bg-white text-gold-deep",
-    border: "border-graphite/10",
-    titleColor: "text-ink",
-    bodyColor: "text-steel",
-  },
-  {
-    bg: "bg-champagne/40 text-graphite",
-    iconBg: "bg-white text-gold-deep",
-    border: "border-graphite/10",
-    titleColor: "text-ink",
-    bodyColor: "text-steel",
-  },
-  {
-    bg: "bg-ink text-champagne",
-    iconBg: "bg-gold-deep/20 text-gold",
-    border: "border-graphite/20",
-    titleColor: "text-white",
-    bodyColor: "text-champagne/70",
-  },
-];
 
 export default function AdvisoryPage() {
   return (
     <>
-      {/* ── HERO: Uniform PageHero ── */}
-      <PageHero
-        eyebrow={advisoryIntro.eyebrow}
-        heading={advisoryIntro.heading}
-        body={advisoryIntro.body}
-        lead={advisoryIntro.lead}
-      />
+      {/* 1. Intro (Dark solid hero header - using About page Intro layout) */}
+      <DarkSection className="pt-32 pb-16 lg:pt-48 lg:pb-24 relative">
+        <Container>
+          <div className="max-w-[700px]">
+            <Reveal>
+              <p className="font-mono text-[11px] font-bold tracking-[0.2em] uppercase text-gold-deep mb-6">
+                {advisoryIntro.eyebrow}
+              </p>
+              <h1 className="mt-2 font-serif text-5xl leading-[1.1] text-white lg:text-6xl tracking-tight">
+                {advisoryIntro.heading}
+              </h1>
+            </Reveal>
+            <div className="mt-8 flex flex-col gap-6">
+              <Reveal
+                as="p"
+                delay={0.1}
+                className="text-white/60 text-[15px] leading-[1.7] max-w-[65ch] font-sans"
+              >
+                {advisoryIntro.body}
+              </Reveal>
+            </div>
+            <Reveal delay={0.4}>
+              <p className="mt-10 font-serif text-gold text-xl lg:text-2xl tracking-wide">
+                {advisoryIntro.lead}
+              </p>
+            </Reveal>
+          </div>
+        </Container>
 
-      {/* ── ADVISORY AREAS: Alternating Card Grid ── */}
-      <section className="bg-white py-20 lg:py-28">
+        {/* Divider line with dot */}
+        <Container className="mt-32">
+          <div className="relative flex items-center justify-center">
+            <div className="absolute inset-0 flex items-center">
+              <div className="w-full border-t border-white/[0.06]"></div>
+            </div>
+            <div className="relative flex justify-center bg-ink px-4">
+              <div className="w-1.5 h-1.5 bg-gold-deep rounded-full rounded-tr-none rotate-45"></div>
+            </div>
+          </div>
+        </Container>
+      </DarkSection>
+
+      {/* 2. Advisory Areas (Grid of colored boxes - using About page "What Makes Us Different" layout) */}
+      <section className="bg-white py-24 lg:py-32">
         <Container>
           <Reveal>
-            <span className="font-mono text-sm font-semibold uppercase tracking-wider text-steel">
-              Advisory Areas
-            </span>
+            <Eyebrow>Advisory Areas</Eyebrow>
           </Reveal>
-
-          <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="mt-16 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {advisoryAreas.map((area, i) => {
-              const Icon = advisoryIcons[i] || IconAdvisory;
-              const style = cardStyles[i % cardStyles.length];
+              const styles = [
+                {
+                  wrapper: "bg-ink text-white",
+                  heading: "text-white",
+                  paragraph: "text-white/70",
+                },
+                {
+                  wrapper: "bg-white text-ink border border-ink/10",
+                  heading: "text-ink",
+                  paragraph: "text-ink/60",
+                },
+                {
+                  wrapper: "bg-[#F7EEDC] text-ink",
+                  heading: "text-ink",
+                  paragraph: "text-ink/70",
+                },
+                {
+                  wrapper: "bg-white text-ink border border-ink/10",
+                  heading: "text-ink",
+                  paragraph: "text-ink/60",
+                }
+              ];
+              const style = styles[i % styles.length];
 
               return (
-                <Reveal
-                  key={area.id}
-                  delay={i * 0.05}
-                  className={`flex flex-col gap-6 border p-8 rounded-[4px] shadow-xs transition-shadow duration-200 hover:shadow-md ${style.bg} ${style.border}`}
+                <Reveal 
+                  key={area.id} 
+                  delay={i * 0.1} 
+                  className={`group flex flex-col overflow-hidden h-full ${style.wrapper}`}
                 >
-                  <div className="self-start">
-                    <IconSwatch icon={Icon} tone={i === 0 || i === 4 ? "gold" : "outline-dark"} />
+                  {/* Top part: Image */}
+                  <div className="relative h-56 w-full shrink-0 overflow-hidden bg-ink/5">
+                    <Image 
+                      src={`/assets/photography/${area.title}.jpg`} 
+                      fill 
+                      className="object-cover transition-transform duration-700 ease-out group-hover:scale-105" 
+                      alt={area.title} 
+                    />
                   </div>
-                  <div>
-                    <h3 className={`font-serif text-xl font-semibold leading-snug ${style.titleColor}`}>
+                  {/* Bottom part: Title and Description */}
+                  <div className="p-8 flex flex-col flex-grow">
+                    <h3 className={`font-sans text-[22px] font-semibold leading-snug ${style.heading}`}>
                       {area.title}
                     </h3>
-                    <p className={`mt-4 text-[15px] leading-relaxed ${style.bodyColor}`}>
+                    <div className={`mt-4 text-[15px] leading-relaxed ${style.paragraph}`}>
                       {area.body}
-                    </p>
+                    </div>
                   </div>
                 </Reveal>
               );
@@ -120,62 +130,55 @@ export default function AdvisoryPage() {
         </Container>
       </section>
 
-      {/* ── HOW WE WORK: Vertical Stepper ── */}
-      <section className="bg-champagne py-20 lg:py-28">
-        <Container>
-          <div className="grid gap-12 lg:grid-cols-12 lg:gap-20">
-            {/* Left Column: Heading */}
-            <div className="lg:col-span-5">
-              <Reveal>
-                <span className="font-mono text-sm font-semibold uppercase tracking-wider text-gold-deep">
-                  How We Work
-                </span>
-                <h2 className="mt-4 font-serif text-3xl leading-tight text-ink lg:text-4xl lg:leading-tight">
-                  A five-step process, from diagnosis to review.
-                </h2>
+      {/* 3. How We Work (Timeline on a Champagne band - using About page "Evolution" layout) */}
+      <section className="bg-champagne py-24 lg:py-32">
+        <Container className="grid gap-12 lg:grid-cols-12 items-start">
+          <div className="lg:col-span-4">
+            <Reveal>
+              <Eyebrow>How We Work</Eyebrow>
+              <h2 className="text-ink mt-4 max-w-[24ch] font-serif text-3xl leading-tight lg:text-4xl">
+                A five-step process, from diagnosis to review.
+              </h2>
+            </Reveal>
+          </div>
+          <div className="flex flex-col gap-6 lg:col-span-8 lg:col-start-5">
+            {advisoryHowWeWork.map((step, i) => (
+              <Reveal
+                key={step.number}
+                delay={i * 0.1}
+                className="flex flex-col sm:flex-row gap-6 items-start bg-white p-8 border border-ink/10"
+              >
+                <div className="text-gold-deep font-mono font-bold text-xl mt-1 shrink-0">
+                  {step.number}
+                </div>
+                <div>
+                  <h3 className="text-ink font-serif text-2xl font-semibold mb-2">
+                    {step.title}
+                  </h3>
+                  <p className="text-ink/80 text-[18px] leading-relaxed max-w-[60ch]">
+                    {step.description}
+                  </p>
+                </div>
               </Reveal>
-            </div>
-
-            {/* Right Column: Steps */}
-            <div className="lg:col-span-7 flex flex-col gap-8">
-              {advisoryHowWeWork.map((step, i) => (
-                <Reveal key={step.number} delay={i * 0.05}>
-                  <div className="flex gap-6 border-b border-graphite/10 pb-8 last:border-b-0 last:pb-0">
-                    <span className="font-mono text-lg font-bold text-gold-deep flex-shrink-0 mt-0.5 border border-gold-deep/30 rounded-[2px] px-2 py-0.5 h-fit bg-white shadow-xs">
-                      {step.number}
-                    </span>
-                    <div>
-                      <h3 className="font-serif text-lg font-semibold text-ink">
-                        {step.title}
-                      </h3>
-                      <p className="mt-2 text-[15px] leading-relaxed text-steel">
-                        {step.description}
-                      </p>
-                    </div>
-                  </div>
-                </Reveal>
-              ))}
-            </div>
+            ))}
           </div>
         </Container>
       </section>
 
-      {/* ── CLOSING CTA: Gold/Yellow Gradient with Dark Button ── */}
-      <section className="bg-gradient-to-br from-gold-deep to-gold py-20 lg:py-28 text-ink">
-        <Container className="flex flex-col items-center text-center gap-8">
-          <Reveal
-            as="h2"
-            className="max-w-[28ch] font-serif text-3xl leading-tight text-ink lg:text-4xl"
-          >
-            {advisoryCta.heading}
+      {/* 4. CTA (Gold-tinted close - using About page "Aspiration" layout) */}
+      <section className="bg-linear-to-br from-gold-deep to-gold py-24 lg:py-40">
+        <Container className="max-w-4xl text-center flex flex-col items-center">
+          <Reveal delay={0.1}>
+            <p className="text-ink mt-8 font-serif text-3xl md:text-4xl leading-tight italic max-w-[28ch]">
+              {advisoryCta.heading}
+            </p>
           </Reveal>
-          <Reveal delay={0.05}>
-            <Button
-              href={advisoryCta.cta.href}
-              className="bg-ink text-white hover:bg-graphite hover:text-white border-transparent px-8 py-3 rounded-[2px] transition-colors shadow-lg"
-            >
-              {advisoryCta.cta.label}
-            </Button>
+          <Reveal delay={0.2}>
+            <div className="mt-10">
+              <Button href={advisoryCta.cta.href} variant="primary">
+                {advisoryCta.cta.label}
+              </Button>
+            </div>
           </Reveal>
         </Container>
       </section>
