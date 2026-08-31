@@ -14,7 +14,7 @@ export function FeaturedProgrammes() {
             Featured Programmes
           </p>
           <h2 className="text-ink font-serif text-[2rem] leading-tight lg:text-[2.5rem] mb-5">
-            {featuredProgrammes.heading}
+            Our Programmes
           </h2>
           <p className="text-graphite text-[17px] leading-relaxed mb-8">
             {featuredProgrammes.intro}

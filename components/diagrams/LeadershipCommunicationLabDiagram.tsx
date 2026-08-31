@@ -31,15 +31,34 @@ export function LeadershipCommunicationLabDiagram() {
         const rad = (stage.angle * Math.PI) / 180;
         const x = cx + r * Math.cos(rad);
         const y = cy + r * Math.sin(rad);
-        const labelX = cx + (r + labelOffset) * Math.cos(rad);
-        const labelY = cy + (r + labelOffset) * Math.sin(rad);
+        
+        let labelX = x;
+        let labelY = y;
+        let anchor: "middle" | "start" | "end" = "middle";
+
+        if (stage.angle === 0) { // Practice (right)
+          labelX = x + 14;
+          labelY = y + 4;
+          anchor = "start";
+        } else if (stage.angle === 180) { // Refine (left)
+          labelX = x - 14;
+          labelY = y + 4;
+          anchor = "end";
+        } else if (stage.angle === -90) { // Scenario (top)
+          labelY = y - 12;
+          anchor = "middle";
+        } else if (stage.angle === 90) { // Feedback (bottom)
+          labelY = y + 18;
+          anchor = "middle";
+        }
+
         return (
           <g key={stage.label}>
             <circle cx={x} cy={y} r="6" stroke="#B98F3E" strokeWidth="1.5" fill="white" />
             <text
               x={labelX}
-              y={labelY + 4}
-              textAnchor="middle"
+              y={labelY}
+              textAnchor={anchor}
               className="fill-ink font-sans text-[11px] font-medium"
             >
               {stage.label}

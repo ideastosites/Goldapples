@@ -5,6 +5,7 @@ import { Reveal } from "@/components/ui/Reveal";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 import { DarkSection } from "@/components/ui/DarkSection";
 import { Button } from "@/components/ui/Button";
+import { SignalDivider } from "@/components/ui/SignalDivider";
 
 import Image from "next/image";
 
@@ -19,8 +20,6 @@ export const metadata: Metadata = {
   title: { absolute: seo.advisory.title },
   description: seo.advisory.description,
 };
-
-
 
 export default function AdvisoryPage() {
   return (
@@ -37,33 +36,27 @@ export default function AdvisoryPage() {
                 {advisoryIntro.heading}
               </h1>
             </Reveal>
-            <div className="mt-8 flex flex-col gap-6">
+            <Reveal delay={0.1}>
+              <p className="mt-8 mb-8 font-serif text-gold text-xl lg:text-2xl tracking-wide">
+                {advisoryIntro.lead}
+              </p>
+            </Reveal>
+            <div className="flex flex-col gap-6">
               <Reveal
                 as="p"
-                delay={0.1}
+                delay={0.2}
                 className="text-white/60 text-[15px] leading-[1.7] max-w-[65ch] font-sans"
               >
                 {advisoryIntro.body}
               </Reveal>
             </div>
-            <Reveal delay={0.4}>
-              <p className="mt-10 font-serif text-gold text-xl lg:text-2xl tracking-wide">
-                {advisoryIntro.lead}
-              </p>
-            </Reveal>
           </div>
         </Container>
-
-        {/* Divider line with dot */}
-        <Container className="mt-32">
-          <div className="relative flex items-center justify-center">
-            <div className="absolute inset-0 flex items-center">
-              <div className="w-full border-t border-white/[0.06]"></div>
-            </div>
-            <div className="relative flex justify-center bg-ink px-4">
-              <div className="w-1.5 h-1.5 bg-gold-deep rounded-full rounded-tr-none rotate-45"></div>
-            </div>
-          </div>
+        {/* Deliberate Signal Motif Divider */}
+        <Container className="mt-16 mb-6 lg:mt-20 lg:mb-10">
+          <Reveal delay={0.1}>
+            <SignalDivider tone="gold" className="w-full !max-w-none [&_svg]:!max-w-none [&_svg]:w-full" />
+          </Reveal>
         </Container>
       </DarkSection>
 
@@ -106,14 +99,16 @@ export default function AdvisoryPage() {
                   className={`group flex flex-col overflow-hidden h-full ${style.wrapper}`}
                 >
                   {/* Top part: Image */}
-                  <div className="relative h-56 w-full shrink-0 overflow-hidden bg-ink/5">
-                    <Image 
-                      src={`/assets/photography/${area.title}.jpg`} 
-                      fill 
-                      className="object-cover transition-transform duration-700 ease-out group-hover:scale-105" 
-                      alt={area.title} 
-                    />
-                  </div>
+                  {area.image && (
+                    <div className="relative h-56 w-full shrink-0 overflow-hidden bg-ink/5">
+                      <Image 
+                        src={area.image} 
+                        fill 
+                        className="object-cover transition-transform duration-700 ease-out group-hover:scale-105" 
+                        alt={area.title} 
+                      />
+                    </div>
+                  )}
                   {/* Bottom part: Title and Description */}
                   <div className="p-8 flex flex-col flex-grow">
                     <h3 className={`font-sans text-[22px] font-semibold leading-snug ${style.heading}`}>
@@ -165,20 +160,21 @@ export default function AdvisoryPage() {
         </Container>
       </section>
 
-      {/* 4. CTA (Gold-tinted close - using About page "Aspiration" layout) */}
-      <section className="bg-linear-to-br from-gold-deep to-gold py-24 lg:py-40">
-        <Container className="max-w-4xl text-center flex flex-col items-center">
-          <Reveal delay={0.1}>
-            <p className="text-ink mt-8 font-serif text-3xl md:text-4xl leading-tight italic max-w-[28ch]">
+      {/* 4. CTA (Dark gradient layout with SignalDivider) */}
+      <section className="relative overflow-hidden bg-ink">
+        {/* Richer gold gradient overlay */}
+        <div className="absolute inset-0 bg-gradient-to-br from-ink via-ink/95 to-gold-deep/40" />
+
+        <Container className="relative z-10 py-32 lg:py-40 text-center flex flex-col items-center">
+          <Reveal className="w-full">
+            <SignalDivider tone="gold" className="mb-16" />
+            
+            <h2 className="font-serif text-[2rem] leading-[1.15] text-white lg:text-[2.5rem] mb-10 max-w-[28ch] mx-auto">
               {advisoryCta.heading}
-            </p>
-          </Reveal>
-          <Reveal delay={0.2}>
-            <div className="mt-10">
-              <Button href={advisoryCta.cta.href} variant="primary">
-                {advisoryCta.cta.label}
-              </Button>
-            </div>
+            </h2>
+            <Button href={advisoryCta.cta.href} variant="gold" className="px-10 h-14 text-base">
+              {advisoryCta.cta.label}
+            </Button>
           </Reveal>
         </Container>
       </section>

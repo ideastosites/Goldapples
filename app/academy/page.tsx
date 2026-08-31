@@ -1,7 +1,7 @@
 import { Metadata } from "next";
 import { Container } from "@/components/ui/Container";
 import { Reveal } from "@/components/ui/Reveal";
-import { academyHero, programmes, deliveryFormats, audiences, academyCta } from "@/content/academy";
+import { academyIntro, programmeCategories, deliveryFormats, weService, academyCta } from "@/content/academy";
 import { Button } from "@/components/ui/Button";
 import { SignalDivider } from "@/components/ui/SignalDivider";
 import { DuotonePhoto } from "@/components/ui/DuotonePhoto";
@@ -48,9 +48,7 @@ const getAudienceIcon = (audience: string) => {
 };
 
 export default function AcademyPage() {
-  const bodyParts = academyHero.body.split(". ");
-  const subhead = bodyParts[0] + ".";
-  const paragraph = bodyParts.slice(1).join(". ");
+  
 
   return (
     <>
@@ -59,13 +57,13 @@ export default function AcademyPage() {
         <Container>
           <Reveal>
             <p className="font-mono text-xs font-bold tracking-[0.15em] uppercase text-gold-deep mb-6">
-              Academy
+              {academyIntro.eyebrow}
             </p>
             <h1 className="text-white font-serif text-4xl leading-[1.1] md:text-5xl lg:text-6xl max-w-[20ch]">
-              {academyHero.heading}
+              {academyIntro.heading}
             </h1>
             <h2 className="text-champagne/90 font-serif mt-6 max-w-[32ch] text-xl md:text-2xl leading-snug">
-              {subhead}
+              {academyIntro.lead}
             </h2>
           </Reveal>
 
@@ -77,11 +75,11 @@ export default function AcademyPage() {
           {/* Programme Index */}
           <Reveal delay={0.2}>
             <div className="flex flex-wrap gap-x-12 gap-y-6 lg:gap-x-16">
-              {programmes.map((prog, i) => (
+              {programmeCategories.map((prog, i) => (
                 <a 
-                  key={prog.title} 
+                  key={prog.id} 
                   href={`#programme-${i + 1}`} 
-                  className="group flex items-baseline gap-3 font-mono text-xs uppercase tracking-[0.08em] transition-colors"
+                  className="group flex items-baseline gap-3 font-mono text-xs uppercase tracking-[0.15em] transition-colors"
                 >
                   <span className="text-gold-deep font-bold text-sm">
                     {String(i + 1).padStart(2, "0")}
@@ -101,7 +99,7 @@ export default function AcademyPage() {
         <Container>
           <Reveal>
             <p className="text-graphite text-[17px] md:text-lg leading-relaxed max-w-[55ch]">
-              {paragraph}
+              {academyIntro.body}
             </p>
           </Reveal>
         </Container>
@@ -109,18 +107,18 @@ export default function AcademyPage() {
 
       {/* Programmes Stacked Sections */}
       <div className="relative overflow-hidden">
-        {programmes.map((prog, i) => {
+        {programmeCategories.map((prog, i) => {
           const isInk = i % 2 !== 0;
           const isImageRight = i % 2 === 0;
 
           return (
             <section
-              key={prog.title}
+              key={prog.id}
               id={`programme-${i + 1}`}
               className={`relative py-24 lg:py-32 ${isInk ? "bg-ink" : "bg-champagne"}`}
             >
               <Container className="relative z-10">
-                <div className="flex flex-col sm:flex-row gap-8 sm:gap-10 md:gap-14 lg:gap-16">
+                <div className="flex flex-col sm:flex-row gap-8 sm:gap-10 md:gap-14 lg:gap-16 group">
                   {/* Node & Line */}
                   <div className="relative shrink-0 flex items-start justify-center sm:justify-start">
                     <div
@@ -130,7 +128,7 @@ export default function AcademyPage() {
                     />
                     
                     <div
-                      className={`relative z-10 flex h-14 w-14 shrink-0 items-center justify-center rounded-full border border-gold-deep text-gold-deep ${
+                      className={`relative z-10 flex h-14 w-14 shrink-0 items-center justify-center rounded-full border border-gold-deep text-gold-deep transition-all duration-500 group-hover:scale-110 group-hover:bg-gold-deep group-hover:text-ink ${
                         isInk ? "bg-ink" : "bg-champagne"
                       }`}
                     >
@@ -148,51 +146,50 @@ export default function AcademyPage() {
                       <div className={`flex flex-col ${isImageRight ? "lg:order-1" : "lg:order-2"}`}>
                         <Reveal>
                           <p
-                            className={`font-mono text-xs font-bold tracking-[0.08em] uppercase mb-4 ${
-                              isInk ? "text-gold-deep" : "text-gold-700"
+                            className={`font-sans text-sm md:text-[15px] font-semibold leading-snug mb-4 ${
+                              isInk ? "text-gold" : "text-gold-700"
                             }`}
                           >
-                            {prog.target}
+                            {prog.audience}
                           </p>
                           <h2
-                            className={`font-serif text-3xl md:text-4xl leading-tight mb-6 ${
+                            className={`font-serif text-[2rem] md:text-[2.5rem] leading-[1.15] mb-6 ${
                               isInk ? "text-white" : "text-ink"
                             }`}
                           >
                             {prog.title}
                           </h2>
-                          {prog.description && (
+                          {prog.body && (
                             <p
-                              className={`text-[17px] leading-relaxed mb-10 ${
+                              className={`text-[17px] leading-relaxed ${
                                 isInk ? "text-champagne/80" : "text-graphite"
                               }`}
                             >
-                              {prog.description}
+                              {prog.body}
                             </p>
                           )}
-                          {!prog.description && <div className="mb-10" />}
 
-                          <h4
-                            className={`font-mono text-xs uppercase tracking-[0.08em] mb-5 ${
-                              isInk ? "text-white/50" : "text-graphite/60"
-                            }`}
-                          >
-                            Key Themes
-                          </h4>
-                          <div className="flex flex-wrap gap-2 md:gap-3">
-                            {prog.themes.map((theme) => (
-                              <span
-                                key={theme}
-                                className={`border rounded-md px-4 py-2.5 text-[14px] font-medium transition-colors hover:border-gold-deep ${
-                                  isInk
-                                    ? "bg-graphite-800 border-white/10 text-champagne/90"
-                                    : "bg-white border-graphite/10 text-ink shadow-sm"
-                                }`}
-                              >
-                                {theme}
-                              </span>
-                            ))}
-                          </div>
+                          {prog.themes && Array.isArray(prog.themes) && prog.themes.length > 0 && (
+                            <div className="mt-8">
+                              <p className={`text-xs font-bold tracking-[0.1em] uppercase mb-4 ${isInk ? "text-white/40" : "text-graphite/50"}`}>
+                                Key Themes
+                              </p>
+                              <div className="flex flex-wrap gap-2">
+                                {prog.themes.map((theme) => (
+                                  <span
+                                    key={theme}
+                                    className={`inline-flex items-center px-3 py-1.5 rounded-[4px] border text-[13.5px] font-medium transition-all duration-300 hover:-translate-y-0.5 hover:shadow-md cursor-default ${
+                                      isInk 
+                                        ? "border-white/10 bg-white/5 text-champagne/90" 
+                                        : "border-graphite/20 bg-white text-ink/80"
+                                    }`}
+                                  >
+                                    {theme}
+                                  </span>
+                                ))}
+                              </div>
+                            </div>
+                          )}
                         </Reveal>
                       </div>
 
@@ -200,8 +197,8 @@ export default function AcademyPage() {
                       <div className={`w-full ${isImageRight ? "lg:order-2" : "lg:order-1"}`}>
                         <Reveal delay={0.1}>
                            <DuotonePhoto 
-                             src="" 
-                             alt={`${prog.title} placeholder`} 
+                             src={prog.image || ""} 
+                             alt={prog.title} 
                              tone={isInk ? "gold" : "ink-gold"}
                              className="w-full aspect-[4/3] rounded-sm"
                            />
@@ -224,22 +221,17 @@ export default function AcademyPage() {
           <Reveal>
             <div className="bg-white border border-graphite/10 rounded-xl p-8 md:p-12 h-full flex flex-col shadow-sm">
               <div className="mb-12">
-                <p className="font-mono text-xs font-bold tracking-[0.1em] uppercase text-gold-700 mb-4">
+                <p className="font-mono text-xs font-bold tracking-[0.15em] uppercase text-gold-700 mb-4">
                   Logistics
                 </p>
                 <div className="w-12 h-px bg-gold-deep mb-6" />
-                <h2 className="text-ink font-serif text-3xl">
-                  {deliveryFormats.heading}
+                <h2 className="text-ink font-serif text-[2rem]">
+                  {deliveryFormats.eyebrow}
                 </h2>
-                {deliveryFormats.intro && (
-                  <p className="text-graphite text-[17px] mt-4 max-w-[35ch] leading-relaxed">
-                    {deliveryFormats.intro}
-                  </p>
-                )}
               </div>
               
               <div className="grid grid-cols-1 xl:grid-cols-2 gap-3 mt-auto">
-                {deliveryFormats.formats.map((format) => {
+                {deliveryFormats.items.map((format) => {
                   const Icon = getFormatIcon(format);
                   return (
                     <div
@@ -262,17 +254,17 @@ export default function AcademyPage() {
           <Reveal delay={0.1}>
             <div className="bg-white border border-graphite/10 rounded-xl p-8 md:p-12 h-full flex flex-col shadow-sm">
               <div className="mb-12">
-                <p className="font-mono text-xs font-bold tracking-[0.1em] uppercase text-gold-700 mb-4">
+                <p className="font-mono text-xs font-bold tracking-[0.15em] uppercase text-gold-700 mb-4">
                   Target Profiles
                 </p>
                 <div className="w-12 h-px bg-gold-deep mb-6" />
-                <h2 className="text-ink font-serif text-3xl">
-                  {audiences.heading}
+                <h2 className="text-ink font-serif text-[2rem]">
+                  {weService.eyebrow}
                 </h2>
               </div>
               
               <div className="grid grid-cols-1 xl:grid-cols-2 gap-3 mt-auto">
-                {audiences.list.map((audience) => {
+                {weService.items.map((audience) => {
                   const Icon = getAudienceIcon(audience);
                   return (
                     <div

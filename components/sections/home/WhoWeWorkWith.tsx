@@ -9,7 +9,7 @@ export function WhoWeWorkWith() {
       <div className="max-w-[1000px] mx-auto text-center px-6 mb-16 relative z-10">
         <Reveal>
           <p className="font-mono text-[11px] font-semibold tracking-[0.25em] uppercase text-gold-deep mb-6">
-            {whoWeWorkWith.heading}
+            Who We Work With
           </p>
           <h3 className="font-serif text-[2rem] leading-[1.15] text-ink lg:text-[2.5rem] mb-8 mx-auto">
             {whoWeWorkWith.body}

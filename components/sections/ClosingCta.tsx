@@ -1,30 +1,43 @@
 import { Container } from "@/components/ui/Container";
 import { Reveal } from "@/components/ui/Reveal";
 import { Button } from "@/components/ui/Button";
-import { DarkSection } from "@/components/ui/DarkSection";
+import { SignalDivider } from "@/components/ui/SignalDivider";
 
 export function ClosingCta({
   heading,
+  body,
   cta,
+  className = "",
 }: {
   heading: string;
-  cta: { label: string; href: string };
+  body?: string;
+  cta?: { label: string; href: string };
+  className?: string;
 }) {
   return (
-    <DarkSection className="py-24 lg:py-32">
-      <Container className="flex flex-col items-start gap-8">
-        <Reveal
-          as="h2"
-          className="max-w-[24ch] font-serif text-3xl leading-tight text-white lg:text-4xl"
-        >
-          {heading}
-        </Reveal>
-        <Reveal delay={0.05}>
-          <Button href={cta.href} variant="gold">
-            {cta.label}
-          </Button>
+    <section className={`relative overflow-hidden bg-ink ${className}`}>
+      {/* Richer gold gradient overlay */}
+      <div className="absolute inset-0 bg-gradient-to-br from-ink via-ink/95 to-gold-deep/40" />
+
+      <Container className="relative z-10 py-32 lg:py-40 text-center flex flex-col items-center">
+        <Reveal className="w-full">
+          <SignalDivider tone="gold" className="mb-16" />
+          
+          <h2 className="font-serif text-[2rem] leading-[1.15] text-white lg:text-[2.5rem] mb-10 max-w-[28ch] mx-auto">
+            {heading}
+          </h2>
+          {body && (
+            <p className="text-champagne/75 text-[17px] leading-relaxed mb-12 max-w-[45ch] mx-auto">
+              {body}
+            </p>
+          )}
+          {cta && (
+            <Button href={cta.href} variant="gold" className="px-10 h-14 text-base mt-2">
+              {cta.label}
+            </Button>
+          )}
         </Reveal>
       </Container>
-    </DarkSection>
+    </section>
   );
 }

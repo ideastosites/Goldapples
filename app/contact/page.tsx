@@ -4,7 +4,15 @@ import { Reveal } from "@/components/ui/Reveal";
 import { Button } from "@/components/ui/Button";
 import { SignalDivider } from "@/components/ui/SignalDivider";
 import { SignalMotif } from "@/components/ui/SignalMotif";
-import { contactHero, formFields, contactCta } from "@/content/contact";
+import { contactContent, supportOptions, responseMethods } from "@/content/contact";
+
+const formFields = [
+  { name: "name", label: "Full Name", type: "text", required: true },
+  { name: "email", label: "Email Address", type: "email", required: true },
+  { name: "support", label: "What kind of support do you need?", type: "select", options: supportOptions, required: true },
+  { name: "method", label: "Preferred response method", type: "radio", options: responseMethods, required: true },
+  { name: "details", label: "Brief Details", type: "textarea", required: true }
+];
 
 export const metadata: Metadata = {
   title: "Contact Us | Goldapples",
@@ -12,8 +20,8 @@ export const metadata: Metadata = {
 };
 
 export default function ContactPage() {
-  const bodyParts = contactHero.body.split(". ");
-  const mainParagraph = bodyParts.slice(0, -1).join(". ") + ".";
+  const bodyParts = contactContent.body.split(". ");
+  const mainParagraph = bodyParts.slice(0, -1).join(". ") + (bodyParts.length > 1 ? "." : "");
   const closingLine = bodyParts[bodyParts.length - 1];
 
   return (
@@ -23,10 +31,10 @@ export default function ContactPage() {
         <Container>
           <Reveal>
             <p className="font-mono text-xs font-bold tracking-[0.15em] uppercase text-gold-deep mb-6">
-              Contact
+              {contactContent.eyebrow}
             </p>
             <h1 className="text-white font-serif text-4xl leading-[1.1] md:text-5xl lg:text-6xl max-w-[20ch]">
-              {contactHero.heading}
+              {contactContent.heading}
             </h1>
             <div className="mt-8 max-w-[55ch]">
               <p className="text-champagne/80 text-[17px] md:text-lg leading-relaxed">
@@ -53,7 +61,7 @@ export default function ContactPage() {
             {/* Left: Info Panel (Ink) */}
             <div className="lg:col-span-4 bg-ink p-10 lg:p-14 flex flex-col relative">
               <Reveal>
-                <p className="font-mono text-xs font-bold tracking-[0.1em] uppercase text-gold-deep mb-10">
+                <p className="font-mono text-xs font-bold tracking-[0.15em] uppercase text-gold-deep mb-10">
                   Get In Touch
                 </p>
                 <h3 className="font-serif text-[1.75rem] leading-snug text-white mb-12">
@@ -62,13 +70,13 @@ export default function ContactPage() {
                 
                 <div className="flex flex-col gap-10">
                   <div>
-                    <p className="font-mono text-xs font-semibold tracking-widest text-white/40 mb-3">EMAIL</p>
+                    <p className="font-mono text-xs font-bold tracking-widest text-white/40 mb-3">EMAIL</p>
                     <a href="mailto:gold@goldapples.ng" className="text-champagne hover:text-gold-deep transition-colors text-[17px]">
                       gold@goldapples.ng
                     </a>
                   </div>
                   <div>
-                    <p className="font-mono text-xs font-semibold tracking-widest text-white/40 mb-3">LOCATION</p>
+                    <p className="font-mono text-xs font-bold tracking-widest text-white/40 mb-3">LOCATION</p>
                     <p className="text-champagne text-[17px]">
                       Lagos, Nigeria
                     </p>
@@ -172,7 +180,7 @@ export default function ContactPage() {
 
                   <div className="pt-6">
                     <Button type="submit" variant="gold" className="w-full sm:w-auto px-10 h-14 text-base">
-                      {contactCta.label}
+                      {contactContent.cta}
                     </Button>
                   </div>
                 </form>
