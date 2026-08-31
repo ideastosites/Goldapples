@@ -7,13 +7,20 @@ import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { primaryNav, serviceCategories, bookConsultationCta } from "@/content/nav";
 import { Button } from "@/components/ui/Button";
 
+import { IconAdvisory, IconAcademy, IconDevelopment, IconFramework } from "@/components/icons";
+
+const categoryIcons: Record<string, React.ReactNode> = {
+  advisory: <IconAdvisory className="w-5 h-5 text-gold-deep" />,
+  academy: <IconAcademy className="w-5 h-5 text-gold-deep" />,
+  "development-communication": <IconDevelopment className="w-5 h-5 text-gold-deep" />,
+  frameworks: <IconFramework className="w-5 h-5 text-gold-deep" />,
+};
+
 export function Nav() {
   const [scrolled, setScrolled] = useState(false);
   const [servicesOpen, setServicesOpen] = useState(false);
-  const [activeCategory, setActiveCategory] = useState(serviceCategories[0].id);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [mobileServicesOpen, setMobileServicesOpen] = useState(false);
-  const [mobileCategory, setMobileCategory] = useState<string | null>(null);
   const reducedMotion = useReducedMotion();
 
   useEffect(() => {
@@ -24,8 +31,6 @@ export function Nav() {
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
-
-  const activeItems = serviceCategories.find((c) => c.id === activeCategory)?.items ?? [];
 
   return (
     <header
@@ -107,7 +112,7 @@ export function Nav() {
         </button>
       </nav>
 
-      {/* Desktop tabbed Services mega-menu */}
+      {/* Desktop Services mega-menu (Simple Grid) */}
       <AnimatePresence>
         {servicesOpen && (
           <motion.div
@@ -117,42 +122,26 @@ export function Nav() {
             transition={{ duration: 0.15, ease: "easeOut" }}
             className="border-graphite/10 absolute inset-x-0 top-full hidden border-b bg-white shadow-[0_16px_32px_-24px_rgba(18,16,13,0.3)] lg:block"
           >
-            <div className="mx-auto max-w-[1360px] px-10 pt-6">
-              <div role="tablist" className="border-graphite/10 flex gap-1 border-b">
+            <div className="mx-auto max-w-[1360px] px-10 py-10">
+              <div className="grid grid-cols-4 gap-8">
                 {serviceCategories.map((cat) => (
-                  <button
-                    key={cat.id}
-                    role="tab"
-                    type="button"
-                    aria-selected={activeCategory === cat.id}
-                    onMouseEnter={() => setActiveCategory(cat.id)}
-                    onClick={() => setActiveCategory(cat.id)}
-                    className={`min-h-11 border-b-2 px-4 text-sm font-semibold transition-colors duration-150 ${
-                      activeCategory === cat.id
-                        ? "border-gold-deep text-ink"
-                        : "text-steel hover:text-ink border-transparent"
-                    }`}
-                  >
-                    {cat.label}
-                  </button>
-                ))}
-              </div>
-              <div className="grid grid-cols-2 gap-x-12 py-8">
-                {activeItems.map((item) => (
                   <Link
-                    key={item.label}
-                    href={item.href}
+                    key={cat.id}
+                    href={cat.href}
                     onClick={() => setServicesOpen(false)}
-                    className="group border-graphite/10 flex flex-col gap-1 border-b py-4 last:border-b-0"
+                    className="group flex flex-col items-start gap-3 rounded-lg border border-transparent p-4 transition-colors hover:bg-champagne/30"
                   >
-                    <span className="group-hover:text-gold-deep text-ink font-serif text-lg transition-colors">
-                      {item.label}
-                    </span>
-                    {item.description && (
-                      <span className="text-steel text-sm leading-relaxed">
-                        {item.description}
+                    <div className="flex h-10 w-10 items-center justify-center rounded-full bg-champagne">
+                      {categoryIcons[cat.id]}
+                    </div>
+                    <div className="flex flex-col gap-1.5">
+                      <span className="group-hover:text-gold-deep text-ink font-serif text-lg transition-colors">
+                        {cat.label}
                       </span>
-                    )}
+                      <span className="text-steel text-[13px] leading-relaxed">
+                        {cat.description}
+                      </span>
+                    </div>
                   </Link>
                 ))}
               </div>
@@ -198,49 +187,13 @@ export function Nav() {
                     >
                       {serviceCategories.map((cat) => (
                         <li key={cat.id}>
-                          <button
-                            type="button"
-                            className="text-ink flex min-h-11 w-full items-center justify-between py-2.5 text-left text-[15px] font-medium"
-                            onClick={() =>
-                              setMobileCategory((v) => (v === cat.id ? null : cat.id))
-                            }
-                            aria-expanded={mobileCategory === cat.id}
+                          <Link
+                            href={cat.href}
+                            onClick={() => setMobileOpen(false)}
+                            className="text-steel flex min-h-11 flex-col justify-center py-2.5 text-sm"
                           >
                             {cat.label}
-                            <span
-                              aria-hidden="true"
-                              className={`text-gold-deep text-xs transition-transform duration-200 ${
-                                mobileCategory === cat.id ? "rotate-180" : ""
-                              }`}
-                            >
-                              ▾
-                            </span>
-                          </button>
-                          <AnimatePresence>
-                            {mobileCategory === cat.id && (
-                              <motion.ul
-                                initial={
-                                  reducedMotion ? false : { height: 0, opacity: 0 }
-                                }
-                                animate={{ height: "auto", opacity: 1 }}
-                                exit={{ height: 0, opacity: 0 }}
-                                transition={{ duration: 0.2, ease: "easeOut" }}
-                                className="overflow-hidden pb-2"
-                              >
-                                {cat.items.map((item) => (
-                                  <li key={item.label}>
-                                    <Link
-                                      href={item.href}
-                                      onClick={() => setMobileOpen(false)}
-                                      className="text-steel flex min-h-11 flex-col justify-center py-1.5 text-sm"
-                                    >
-                                      {item.label}
-                                    </Link>
-                                  </li>
-                                ))}
-                              </motion.ul>
-                            )}
-                          </AnimatePresence>
+                          </Link>
                         </li>
                       ))}
                     </motion.ul>
