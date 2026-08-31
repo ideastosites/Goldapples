@@ -5,7 +5,6 @@ import { Reveal } from "@/components/ui/Reveal";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 import { Tag } from "@/components/ui/Tag";
 import { DarkSection } from "@/components/ui/DarkSection";
-import { IconSwatch } from "@/components/ui/IconSwatch";
 import { Marquee } from "@/components/ui/Marquee";
 import Image from "next/image";
 
@@ -271,7 +270,7 @@ export default function AboutPage() {
           </Reveal>
           <Reveal delay={0.1}>
             <p className="text-ink mt-8 font-serif text-3xl md:text-4xl leading-tight italic max-w-[28ch]">
-              "{aspiration.body}"
+              &quot;{aspiration.body}&quot;
             </p>
           </Reveal>
         </Container>
