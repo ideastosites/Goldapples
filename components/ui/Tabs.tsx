@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 
 export type TabItem = {
@@ -22,8 +22,11 @@ export function Tabs({
   activeTabClassName?: string;
   inactiveTabClassName?: string;
 }) {
+  const [isMounted, setIsMounted] = useState(false);
+  useEffect(() => setIsMounted(true), []);
   const [active, setActive] = useState(defaultTab ?? tabs[0]?.id);
   const reducedMotion = useReducedMotion();
+  const safeReducedMotion = isMounted ? reducedMotion : false;
   const activeTab = tabs.find((t) => t.id === active) ?? tabs[0];
 
   return (
@@ -47,7 +50,7 @@ export function Tabs({
       <AnimatePresence mode="wait">
         <motion.div
           key={activeTab?.id}
-          initial={reducedMotion ? false : { opacity: 0 }}
+          initial={safeReducedMotion ? false : { opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           transition={{ duration: 0.15 }}
