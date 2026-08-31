@@ -11,10 +11,12 @@ export function Marquee({
   children,
   className = "",
   durationSeconds = 32,
+  reverse = false,
 }: {
   children: ReactNode;
   className?: string;
   durationSeconds?: number;
+  reverse?: boolean;
 }) {
   const reducedMotion = useReducedMotion();
 
@@ -25,7 +27,7 @@ export function Marquee({
   return (
     <div className={`group overflow-hidden ${className}`}>
       <div
-        className="flex w-max shrink-0 [animation:marquee_var(--marquee-duration)_linear_infinite] gap-3 group-hover:[animation-play-state:paused]"
+        className={`flex w-max shrink-0 gap-3 group-hover:[animation-play-state:paused] ${reverse ? '[animation:marquee-reverse_var(--marquee-duration)_linear_infinite]' : '[animation:marquee_var(--marquee-duration)_linear_infinite]'}`}
         style={{ "--marquee-duration": `${durationSeconds}s` } as React.CSSProperties}
       >
         <div className="flex shrink-0 gap-3">{children}</div>
