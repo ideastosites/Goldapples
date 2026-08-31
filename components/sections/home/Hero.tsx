@@ -1,117 +1,163 @@
 "use client";
 
-import { useRef } from "react";
-import { motion, useMotionValue, useSpring, useReducedMotion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 import Link from "next/link";
 import { Button } from "@/components/ui/Button";
 import { DuotonePhoto } from "@/components/ui/DuotonePhoto";
 import { hero } from "@/content/home";
 
-function HeroMotif() {
-  const ref = useRef<HTMLDivElement>(null);
+function AmbientHeroSignal({ className = "absolute -top-32 -left-32 w-[600px] h-[600px] text-gold-deep/10 pointer-events-none z-0" }: { className?: string }) {
   const reducedMotion = useReducedMotion();
-  const rawX = useMotionValue(0);
-  const rawY = useMotionValue(0);
-  const rotateX = useSpring(rawX, { stiffness: 120, damping: 20 });
-  const rotateY = useSpring(rawY, { stiffness: 120, damping: 20 });
-
-  function handleMouseMove(event: React.MouseEvent<HTMLDivElement>) {
-    if (reducedMotion || !ref.current) return;
-    const rect = ref.current.getBoundingClientRect();
-    const px = (event.clientX - rect.left) / rect.width - 0.5;
-    const py = (event.clientY - rect.top) / rect.height - 0.5;
-    rawY.set(px * 8);
-    rawX.set(py * -8);
-  }
-
-  function handleMouseLeave() {
-    rawX.set(0);
-    rawY.set(0);
-  }
-
+  
   return (
-    <div
-      ref={ref}
-      onMouseMove={handleMouseMove}
-      onMouseLeave={handleMouseLeave}
-      className="absolute inset-0"
-      style={{ perspective: 800 }}
+    <motion.svg 
+      viewBox="0 0 400 400" 
+      fill="none" 
+      aria-hidden="true"
+      className={className}
+      initial={reducedMotion ? "visible" : "hidden"}
+      animate="visible"
     >
-      <motion.svg
-        viewBox="0 0 400 400"
-        fill="none"
-        aria-hidden="true"
-        style={reducedMotion ? undefined : { rotateX, rotateY }}
-        className="h-full w-full"
-      >
-        <circle cx="80" cy="200" r="18" stroke="#F7EEDC" strokeWidth="1.5" />
-        <circle cx="200" cy="90" r="13" stroke="#F7EEDC" strokeWidth="1.5" />
-        <circle cx="200" cy="310" r="13" stroke="#F7EEDC" strokeWidth="1.5" />
-        <circle
-          cx="330"
-          cy="200"
-          r="24"
-          fill="#F7EEDC"
-          fillOpacity="0.15"
-          stroke="#F7EEDC"
-          strokeWidth="1.5"
-        />
-        <circle cx="330" cy="200" r="5" fill="#F7EEDC" />
-        <path d="M96 193 L189 122" stroke="#F7EEDC" strokeWidth="1.5" opacity="0.7" />
-        <path d="M96 207 L189 298" stroke="#F7EEDC" strokeWidth="1.5" opacity="0.7" />
-        <path d="M212 100 L312 185" stroke="#F7EEDC" strokeWidth="1.5" opacity="0.7" />
-        <path d="M212 305 L312 215" stroke="#F7EEDC" strokeWidth="1.5" opacity="0.7" />
-        <path
-          d="M80 200 Q 200 40 330 200"
-          stroke="#F7EEDC"
-          strokeWidth="1.5"
-          strokeDasharray="2 8"
-          opacity="0.5"
-        />
-      </motion.svg>
-    </div>
+      <motion.path 
+        d="M0 200 Q 100 50 200 200 T 400 200" 
+        stroke="currentColor" 
+        strokeWidth="1" 
+        variants={{
+          hidden: { pathLength: 0, opacity: 0 },
+          visible: { pathLength: 1, opacity: 1, transition: { duration: 2, ease: "easeInOut" as any } }
+        }}
+      />
+      <motion.path 
+        d="M0 200 Q 100 350 200 200 T 400 200" 
+        stroke="currentColor" 
+        strokeWidth="1" 
+        variants={{
+          hidden: { pathLength: 0, opacity: 0 },
+          visible: { pathLength: 1, opacity: 0.5, transition: { duration: 2.5, ease: "easeInOut" as any, delay: 0.2 } }
+        }}
+      />
+      <motion.circle 
+        cx="200" cy="200" r="150" 
+        stroke="currentColor" 
+        strokeWidth="0.5" 
+        strokeDasharray="4 8"
+        variants={{
+          hidden: { scale: 0.8, opacity: 0 },
+          visible: { scale: 1, opacity: 1, transition: { duration: 3, ease: "easeOut" as any } }
+        }}
+      />
+    </motion.svg>
   );
 }
 
 export function Hero() {
+  const reducedMotion = useReducedMotion();
+
+  const fadeUp = {
+    hidden: { opacity: 0, y: 15 },
+    visible: (i: number) => ({
+      opacity: 1,
+      y: 0,
+      transition: { delay: i * 0.15, duration: 0.7, ease: "easeOut" as any },
+    }),
+  };
+
   return (
-    <section className="grid overflow-hidden lg:grid-cols-12">
-      <div className="bg-ink relative flex flex-col justify-center gap-8 px-6 py-20 sm:px-10 lg:col-span-7 lg:px-16 lg:py-28">
-        <p className="border-gold-deep text-champagne max-w-[26ch] border-l-2 pl-5 font-serif text-2xl leading-snug italic md:text-3xl">
-          &ldquo;{hero.quote}&rdquo;
-        </p>
-        <p className="text-champagne/60 pl-5 text-sm">— {hero.quoteAuthor}</p>
+    <section className="relative min-h-[85vh] bg-ink flex items-center overflow-hidden py-24 lg:py-32">
+      <div className="w-full max-w-[1280px] mx-auto px-6 sm:px-12 lg:px-20 relative z-10">
+        <div className="grid lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+          
+          {/* Left — Content */}
+          <div className="lg:col-span-7 flex flex-col relative">
+            {/* Epigraph */}
+            <motion.div
+              className="mb-8"
+              custom={0}
+              variants={reducedMotion ? undefined : fadeUp}
+              initial={reducedMotion ? undefined : "hidden"}
+              animate={reducedMotion ? undefined : "visible"}
+            >
+              <div className="flex flex-col gap-3">
+                <p className="font-serif text-[22px] leading-snug italic text-champagne/90">
+                  &ldquo;{hero.quote}&rdquo;
+                </p>
+                <div className="flex items-center gap-4">
+                  <div className="h-px w-8 bg-gold-deep/60" />
+                  <cite className="font-mono text-[10px] font-bold tracking-[0.25em] uppercase text-gold-deep not-italic">
+                    {hero.quoteAuthor}
+                  </cite>
+                </div>
+              </div>
+            </motion.div>
 
-        <h1 className="max-w-[20ch] font-serif text-4xl leading-[1.1] text-white md:text-5xl lg:text-6xl">
-          {hero.heading}
-        </h1>
-        <p className="text-champagne/70 max-w-[56ch] text-lg leading-relaxed">
-          {hero.body}
-        </p>
+            {/* Main headline - Refined typographic treatment */}
+            <motion.h1
+              className="font-serif text-[2.5rem] leading-[1.12] tracking-tight text-white md:text-5xl lg:text-[56px] mb-6 max-w-[20ch]"
+              custom={1}
+              variants={reducedMotion ? undefined : fadeUp}
+              initial={reducedMotion ? undefined : "hidden"}
+              animate={reducedMotion ? undefined : "visible"}
+            >
+              Communication determines <span className="relative inline-block italic text-gold-deep pr-1">
+                organisational
+                <svg className="absolute -bottom-1 left-0 w-full h-[3px] text-gold-deep/40" viewBox="0 0 100 10" preserveAspectRatio="none">
+                  <path d="M0 5 Q 50 0 100 5" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+                </svg>
+              </span> performance. We help leaders, institutions and development actors make it work.
+            </motion.h1>
 
-        <div className="flex flex-wrap items-center gap-x-8 gap-y-4">
-          <Button href={hero.primaryCta.href} variant="gold">
-            {hero.primaryCta.label}
-          </Button>
-          <Link
-            href={hero.secondaryCta.href}
-            className="hover:text-gold min-h-11 border-b border-white/40 py-2 text-sm font-semibold text-white transition-colors hover:border-white"
-          >
-            {hero.secondaryCta.label}
-          </Link>
+            {/* Supporting body */}
+            <motion.p
+              className="max-w-[55ch] text-lg leading-relaxed text-champagne/80 mb-10"
+              custom={2}
+              variants={reducedMotion ? undefined : fadeUp}
+              initial={reducedMotion ? undefined : "hidden"}
+              animate={reducedMotion ? undefined : "visible"}
+            >
+              {hero.body}
+            </motion.p>
+
+            {/* CTAs */}
+            <motion.div
+              className="flex flex-wrap items-center gap-x-6 gap-y-4"
+              custom={3}
+              variants={reducedMotion ? undefined : fadeUp}
+              initial={reducedMotion ? undefined : "hidden"}
+              animate={reducedMotion ? undefined : "visible"}
+            >
+              <Button href={hero.primaryCta.href} variant="gold">
+                {hero.primaryCta.label}
+              </Button>
+              <Link
+                href={hero.secondaryCta.href}
+                className="inline-flex items-center gap-1.5 border-b border-white/20 py-1.5 text-sm font-semibold text-champagne transition-colors hover:border-gold-deep hover:text-gold-deep"
+              >
+                {hero.secondaryCta.label}
+                <span aria-hidden="true">→</span>
+              </Link>
+            </motion.div>
+          </div>
+
+          {/* Right — Graphic Panel */}
+          <div className="lg:col-span-5 w-full mt-12 lg:mt-0">
+            <motion.div
+              className="relative w-full aspect-video sm:aspect-[4/3] lg:aspect-[4/5] max-w-[440px] mx-auto lg:ml-auto lg:mx-0 rounded-[3px] overflow-hidden shadow-2xl border border-white/5"
+              custom={2}
+              variants={reducedMotion ? undefined : fadeUp}
+              initial={reducedMotion ? undefined : "hidden"}
+              animate={reducedMotion ? undefined : "visible"}
+            >
+              <DuotonePhoto 
+                src="/H_hero.jpg" 
+                alt="Goldapples Communication Masterclass" 
+                tone="ink-gold" 
+                className="absolute inset-0 w-full h-full" 
+                priority
+              />
+            </motion.div>
+          </div>
+
         </div>
-      </div>
-
-      <div className="from-gold-deep to-gold relative hidden min-h-[560px] overflow-hidden bg-linear-to-br lg:col-span-5 lg:block">
-        <DuotonePhoto
-          src="/assets/photography/founder-session.jpg"
-          alt="J. Ayo Makinde presenting the Physics of Communication framework at a Goldapples executive session"
-          tone="gold"
-          className="absolute inset-0"
-          sizes="42vw"
-          priority
-        />
-        <HeroMotif />
       </div>
     </section>
   );

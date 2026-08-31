@@ -7,6 +7,7 @@ export type AccordionItem = {
   id: string;
   title: string;
   body: string | React.ReactNode;
+  icon?: React.ReactNode;
 };
 
 export function Accordion({ items }: { items: AccordionItem[] }) {
@@ -25,7 +26,8 @@ export function Accordion({ items }: { items: AccordionItem[] }) {
               aria-expanded={isOpen}
               className="flex min-h-14 w-full items-center justify-between gap-6 py-6 text-left"
             >
-              <span className="text-ink font-serif text-xl md:text-2xl">
+              <span className="flex items-center gap-4 text-ink font-serif text-xl md:text-2xl">
+                {item.icon}
                 {item.title}
               </span>
               <span

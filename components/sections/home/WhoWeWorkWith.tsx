@@ -1,45 +1,59 @@
-import { Container } from "@/components/ui/Container";
 import { Reveal } from "@/components/ui/Reveal";
-import { Eyebrow } from "@/components/ui/Eyebrow";
 import { Marquee } from "@/components/ui/Marquee";
+import { SignalDivider } from "@/components/ui/SignalDivider";
 import { whoWeWorkWith } from "@/content/home";
 
 export function WhoWeWorkWith() {
   return (
-    <section className="bg-champagne py-24 lg:py-32">
-      <Container>
-        <div className="grid gap-10 lg:grid-cols-12">
-          <div className="lg:col-span-4">
-            <Reveal>
-              <Eyebrow>06 — Who We Work With</Eyebrow>
-            </Reveal>
-          </div>
-          <div className="lg:col-span-7 lg:col-start-6">
-            <Reveal as="p" className="text-graphite max-w-[68ch] text-lg leading-relaxed">
-              {whoWeWorkWith.body}
-            </Reveal>
-            <Reveal
-              as="p"
-              delay={0.05}
-              className="text-ink mt-4 max-w-[68ch] text-lg leading-relaxed"
-            >
-              {whoWeWorkWith.closing}
-            </Reveal>
-          </div>
+    <section className="bg-white pt-24 pb-16 lg:pt-32 lg:pb-24 overflow-hidden relative">
+      <div className="max-w-[1000px] mx-auto text-center px-6 mb-16 relative z-10">
+        <Reveal>
+          <p className="font-mono text-[11px] font-semibold tracking-[0.25em] uppercase text-gold-deep mb-6">
+            {whoWeWorkWith.heading}
+          </p>
+          <h3 className="font-serif text-[2rem] leading-[1.15] text-ink lg:text-[2.5rem] mb-8 mx-auto">
+            {whoWeWorkWith.body}
+          </h3>
+          <p className="text-graphite text-[17px] leading-relaxed max-w-[80ch] mx-auto mb-10">
+            {whoWeWorkWith.closing}
+          </p>
+        </Reveal>
+        
+        <Reveal delay={0.2}>
+          <SignalDivider tone="ink" className="opacity-60" />
+        </Reveal>
+      </div>
+
+      {/* Marquee Tickers - Dual intersecting direction */}
+      <div className="relative z-10 flex flex-col gap-3 mt-4">
+        <div className="w-[105%] -ml-[2.5%] rotate-[-0.5deg] bg-ink py-3 shadow-md">
+          <Marquee durationSeconds={45}>
+            {whoWeWorkWith.tags.slice(0, 6).map((tag) => (
+              <span
+                key={tag}
+                className="inline-flex shrink-0 items-center px-8 py-1.5 text-[15px] font-mono tracking-widest uppercase text-champagne/90 mx-2"
+              >
+                {tag}
+                <span className="ml-12 w-1.5 h-1.5 rounded-full bg-gold-deep/50" />
+              </span>
+            ))}
+          </Marquee>
         </div>
-      </Container>
-      <Reveal delay={0.1} className="mt-12 px-6 lg:px-10">
-        <Marquee>
-          {whoWeWorkWith.tags.map((tag) => (
-            <span
-              key={tag}
-              className="border-gold-deep/50 text-ink inline-flex items-center rounded-[3px] border bg-white px-4 py-2 text-sm whitespace-nowrap"
-            >
-              {tag}
-            </span>
-          ))}
-        </Marquee>
-      </Reveal>
+        
+        <div className="w-[105%] -ml-[2.5%] rotate-[0.5deg] bg-gold-deep py-3 shadow-md">
+          <Marquee durationSeconds={50} reverse>
+            {whoWeWorkWith.tags.slice(6).map((tag) => (
+              <span
+                key={tag}
+                className="inline-flex shrink-0 items-center px-8 py-1.5 text-[15px] font-mono tracking-widest uppercase text-ink mx-2"
+              >
+                {tag}
+                <span className="ml-12 w-1.5 h-1.5 rounded-full bg-ink/30" />
+              </span>
+            ))}
+          </Marquee>
+        </div>
+      </div>
     </section>
   );
 }
