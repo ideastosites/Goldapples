@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 
 export type AccordionItem = {
@@ -11,8 +11,11 @@ export type AccordionItem = {
 };
 
 export function Accordion({ items }: { items: AccordionItem[] }) {
+  const [isMounted, setIsMounted] = useState(false);
+  useEffect(() => setIsMounted(true), []);
   const [openId, setOpenId] = useState<string | null>(items[0]?.id ?? null);
   const reducedMotion = useReducedMotion();
+  const safeReducedMotion = isMounted ? reducedMotion : false;
 
   return (
     <div className="border-graphite/12 divide-graphite/12 divide-y border-t border-b">
@@ -26,8 +29,8 @@ export function Accordion({ items }: { items: AccordionItem[] }) {
               aria-expanded={isOpen}
               className="flex min-h-14 w-full items-center justify-between gap-6 py-6 text-left"
             >
-              <span className="flex items-center gap-4 text-ink font-serif text-xl md:text-2xl">
-                {item.icon}
+              <span className="text-ink flex items-center gap-4 font-serif text-xl md:text-2xl">
+                {item.icon && <span className="shrink-0">{item.icon}</span>}
                 {item.title}
               </span>
               <span
@@ -42,7 +45,7 @@ export function Accordion({ items }: { items: AccordionItem[] }) {
             <AnimatePresence initial={false}>
               {isOpen && (
                 <motion.div
-                  initial={reducedMotion ? false : { height: 0, opacity: 0 }}
+                  initial={safeReducedMotion ? false : { height: 0, opacity: 0 }}
                   animate={{ height: "auto", opacity: 1 }}
                   exit={{ height: 0, opacity: 0 }}
                   transition={{ duration: 0.22, ease: "easeOut" }}
