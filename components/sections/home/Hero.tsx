@@ -63,7 +63,7 @@ export function Hero() {
   };
 
   return (
-    <section className="relative min-h-[85vh] bg-ink flex items-center overflow-hidden py-24 lg:py-32">
+    <section className="relative min-h-[85vh] bg-ink flex items-center overflow-hidden pt-32 pb-16 lg:pt-40 lg:pb-24">
       <div className="w-full max-w-[1280px] mx-auto px-6 sm:px-12 lg:px-20 relative z-10">
         <div className="grid lg:grid-cols-12 gap-12 lg:gap-16 items-center">
           

@@ -28,7 +28,7 @@ export function WorkImpactTeaser() {
               <p className="font-mono text-xs font-semibold tracking-[0.2em] uppercase text-gold-deep mb-6">
                 Work & Impact
               </p>
-              <h2 className="font-serif text-3xl leading-[1.15] text-white lg:text-4xl mb-6">
+              <h2 className="font-serif text-[2rem] leading-[1.15] text-white lg:text-[2.5rem] mb-6">
                 {workImpactTeaser.heading}
               </h2>
               <p className="text-champagne/80 text-lg leading-relaxed mb-10">

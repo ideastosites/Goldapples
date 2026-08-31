@@ -65,14 +65,14 @@ export function DuotonePhoto({
   }
 
   return (
-    <div className={`overflow-hidden ${className}`}>
+    <div className={`relative overflow-hidden ${className}`}>
       <Image
         src={src}
         alt={alt}
         fill
         priority={priority}
         sizes={sizes}
-        className="object-cover"
+        className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
       />
     </div>
   );

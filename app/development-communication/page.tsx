@@ -4,7 +4,9 @@ import { Container } from "@/components/ui/Container";
 import { Reveal } from "@/components/ui/Reveal";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 import { DarkSection } from "@/components/ui/DarkSection";
+import { ClosingCta } from "@/components/sections/ClosingCta";
 import { Button } from "@/components/ui/Button";
+import { SignalDivider } from "@/components/ui/SignalDivider";
 
 // Icons
 import {
@@ -67,17 +69,11 @@ export default function DevelopmentCommunicationPage() {
             </div>
           </div>
         </Container>
-
-        {/* Divider line with dot */}
-        <Container className="mt-32">
-          <div className="relative flex items-center justify-center">
-            <div className="absolute inset-0 flex items-center">
-              <div className="w-full border-t border-white/[0.06]"></div>
-            </div>
-            <div className="relative flex justify-center bg-ink px-4">
-              <div className="w-1.5 h-1.5 bg-gold-deep rounded-full rounded-tr-none rotate-45"></div>
-            </div>
-          </div>
+        {/* Deliberate Signal Motif Divider */}
+        <Container className="mt-16 mb-6 lg:mt-20 lg:mb-10">
+          <Reveal delay={0.1}>
+            <SignalDivider tone="gold" className="w-full !max-w-none [&_svg]:!max-w-none [&_svg]:w-full" />
+          </Reveal>
         </Container>
       </DarkSection>
 
@@ -190,23 +186,8 @@ export default function DevelopmentCommunicationPage() {
         </Container>
       </section>
 
-      {/* 4. CTA (Gold-tinted close) */}
-      <section className="bg-linear-to-br from-gold-deep to-gold py-24 lg:py-40">
-        <Container className="max-w-4xl text-center flex flex-col items-center">
-          <Reveal delay={0.1}>
-            <p className="text-ink mt-8 font-serif text-3xl md:text-4xl leading-tight italic max-w-[28ch]">
-              {devCommCta.heading}
-            </p>
-          </Reveal>
-          <Reveal delay={0.2}>
-            <div className="mt-10">
-              <Button href={devCommCta.cta.href} variant="primary">
-                {devCommCta.cta.label}
-              </Button>
-            </div>
-          </Reveal>
-        </Container>
-      </section>
+      {/* 4. CTA (Dark layout with SignalDivider via ClosingCta) */}
+      <ClosingCta heading={devCommCta.heading} cta={devCommCta.cta} />
     </>
   );
 }

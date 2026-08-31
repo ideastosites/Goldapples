@@ -4,15 +4,16 @@ import { useState } from "react";
 
 const nodes = [
   { id: "source", x: 40, y: 90, label: "Source" },
-  { id: "force", x: 150, y: 40, label: "Force" },
-  { id: "medium", x: 260, y: 90, label: "Medium" },
-  { id: "resistance", x: 370, y: 40, label: "Resistance" },
-  { id: "effect", x: 480, y: 90, label: "Effect" },
+  { id: "force", x: 144, y: 40, label: "Force" },
+  { id: "medium", x: 248, y: 90, label: "Medium" },
+  { id: "resistance", x: 352, y: 40, label: "Resistance" },
+  { id: "distortion", x: 456, y: 90, label: "Distortion" },
+  { id: "effect", x: 560, y: 40, label: "Effect" },
 ];
 
 /**
  * The Physics of Communication chain — source, force, medium, resistance,
- * effect — as a bespoke line-art diagram. Per design.md §8, elements
+ * distortion, effect — as a bespoke line-art diagram. Per design.md §8, elements
  * highlight as the cursor passes near them; this doubles as an explanatory
  * device (desktop only, degrades to the static chain everywhere else).
  */
@@ -21,7 +22,7 @@ export function PhysicsOfCommunicationDiagram() {
 
   function handleMove(event: React.MouseEvent<SVGSVGElement>) {
     const rect = event.currentTarget.getBoundingClientRect();
-    const scaleX = 520 / rect.width;
+    const scaleX = 620 / rect.width;
     const scaleY = 140 / rect.height;
     const x = (event.clientX - rect.left) * scaleX;
     const y = (event.clientY - rect.top) * scaleY;
@@ -40,7 +41,7 @@ export function PhysicsOfCommunicationDiagram() {
 
   return (
     <svg
-      viewBox="0 0 520 140"
+      viewBox="0 0 620 140"
       className="w-full"
       onMouseMove={handleMove}
       onMouseLeave={() => setActive(null)}

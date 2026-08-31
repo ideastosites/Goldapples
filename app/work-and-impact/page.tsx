@@ -79,8 +79,7 @@ export default function WorkAndImpactPage() {
       {/* ── CLOSING CTA: Ink ── */}
       <ClosingCta 
         heading={workImpactCta.heading} 
-        cta={workImpactCta.cta} 
-        className="py-12 lg:py-16"
+        cta={workImpactCta.cta}
       />
     </>
   );

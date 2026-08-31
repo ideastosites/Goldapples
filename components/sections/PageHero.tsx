@@ -1,6 +1,7 @@
 import { Container } from "@/components/ui/Container";
 import { Reveal } from "@/components/ui/Reveal";
 import { DarkSection } from "@/components/ui/DarkSection";
+import { SignalDivider } from "@/components/ui/SignalDivider";
 
 interface PageHeroProps {
   eyebrow: string;
@@ -11,36 +12,35 @@ interface PageHeroProps {
 
 export function PageHero({ eyebrow, heading, body, lead }: PageHeroProps) {
   return (
-    <DarkSection className="relative overflow-hidden pt-32 pb-24 lg:pt-40 lg:pb-32">
-      {/* Bottom border line decoration */}
-      <div
-        aria-hidden="true"
-        className="absolute bottom-0 left-0 h-[2px] w-1/2 bg-gradient-to-r from-gold-deep to-transparent"
-      />
-
+    <DarkSection className="relative overflow-hidden pt-32 pb-16 lg:pt-40 lg:pb-24">
       <Container className="relative z-10">
         <div className="max-w-[76ch]">
           <Reveal>
-            <span className="font-mono text-sm font-semibold uppercase tracking-wider text-gold">
+            <p className="font-mono text-xs font-bold uppercase tracking-[0.15em] text-gold-deep mb-6">
               {eyebrow}
-            </span>
-            <h1 className="mt-4 font-serif text-5xl leading-tight text-white md:text-6xl lg:text-[72px]">
+            </p>
+            <h1 className="font-serif text-4xl leading-[1.1] text-white md:text-5xl lg:text-6xl">
               {heading}
             </h1>
           </Reveal>
           
           <Reveal delay={0.08}>
-            <p className="mt-6 text-[15px] sm:text-base leading-relaxed text-champagne/80">
-              {body}
+            <p className="mt-6 text-xl lg:text-2xl font-serif text-gold-deep leading-snug">
+              {lead}
             </p>
           </Reveal>
 
           <Reveal delay={0.16}>
-            <p className="mt-4 text-lg sm:text-xl font-semibold leading-relaxed text-gold">
-              {lead}
+            <p className="mt-6 text-[17px] sm:text-lg leading-relaxed text-champagne/80">
+              {body}
             </p>
           </Reveal>
         </div>
+
+        {/* Deliberate Signal Motif Divider */}
+        <Reveal delay={0.2} className="w-full mt-16 mb-6 lg:mt-20 lg:mb-10">
+          <SignalDivider tone="gold" className="w-full !max-w-none [&_svg]:!max-w-none [&_svg]:w-full" />
+        </Reveal>
       </Container>
     </DarkSection>
   );

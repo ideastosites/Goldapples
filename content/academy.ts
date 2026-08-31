@@ -9,46 +9,74 @@ export const programmeCategories = [
   {
     id: "executive-communication-masterclass",
     title: "Executive Communication Masterclass",
+    image: "/assets/Academy_images/Executive Communication Masterclass.jpg",
     audience: "For senior professionals, executives and public-facing leaders.",
     body: "Learn to communicate ideas, decisions and strategy with clarity, structure and credibility.",
-    themes:
-      "Key themes: message clarity, executive presence, strategic listening, high-stakes speaking, stakeholder communication, credibility under pressure.",
+    themes: [
+      "Message clarity",
+      "Executive presence",
+      "Strategic listening",
+      "High-stakes speaking",
+      "Stakeholder communication",
+      "Credibility under pressure"
+    ],
   },
   {
     id: "leadership-communication-lab",
     title: "Leadership Communication Lab",
+    image: "/assets/Academy_images/Leadership Communication Lab.jpg",
     audience:
       "A practical lab for leaders who need to align teams and improve execution, using scenarios, simulations, role-play and peer feedback.",
     body: "",
-    themes:
-      "Key themes: aligning intention and interpretation, communicating change, managing meaning drift, difficult conversations, trust-building language.",
+    themes: [
+      "Aligning intention and interpretation",
+      "Communicating change",
+      "Managing meaning drift",
+      "Difficult conversations",
+      "Trust-building language"
+    ],
   },
   {
     id: "communicating-credibility",
     title: "Communicating Credibility",
+    image: "/assets/Academy_images/Communicating Credibility.jpg",
     audience:
       "For professionals and leaders whose work requires trust — how credibility is built or damaged through language, tone, timing and consistency.",
     body: "",
-    themes:
-      "Key themes: trust signals, professional presence, managing perception, credibility in meetings and public engagements.",
+    themes: [
+      "Trust signals",
+      "Professional presence",
+      "Managing perception",
+      "Credibility in meetings and public engagements"
+    ],
   },
   {
     id: "communication-for-public-institutions",
     title: "Communication for Public Institutions",
+    image: "/assets/Academy_images/Communication for Public Institutions.jpg",
     audience:
       "For government officials and institutional communication teams — how to communicate policies, reforms and priorities so citizens and stakeholders understand and trust them.",
     body: "",
-    themes:
-      "Key themes: policy translation, citizen engagement, media management, communicating reform.",
+    themes: [
+      "Policy translation",
+      "Citizen engagement",
+      "Media management",
+      "Communicating reform"
+    ],
   },
   {
     id: "development-communication-training",
     title: "Development Communication Training",
+    image: "/assets/Academy_images/Development Communication Training.jpg",
     audience:
       "For journalists, development actors and civil society organisations working on public-interest issues.",
     body: "",
-    themes:
-      "Key themes: human-centred storytelling, solutions-oriented reporting, responsible media engagement, climate and social impact communication.",
+    themes: [
+      "Human-centred storytelling",
+      "Solutions-oriented reporting",
+      "Responsible media engagement",
+      "Climate and social impact communication"
+    ],
   },
 ];
 

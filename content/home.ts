@@ -180,7 +180,13 @@ export const workImpactTeaser = {
 
 export const whyGoldapples = {
   heading: "We combine experience, insight and method.",
-  body: "Goldapples is led by senior communication experience and strengthened by a growing body of original frameworks and practical training models. We bring over three decades of communication and media experience, practical understanding of leadership and public communication, strong facilitation capability, and experience across media, governance and development contexts.",
+  body: "Goldapples is led by senior communication experience and strengthened by a growing body of original frameworks and practical training models.",
+  points: [
+    "Over three decades of communication and media experience",
+    "Practical understanding of leadership and public communication",
+    "Strong facilitation capability",
+    "Experience across media, governance and development contexts",
+  ],
   closing:
     "Our strength isn't simply that we communicate — it's that we help others understand how communication works.",
 };

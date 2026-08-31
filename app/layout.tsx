@@ -39,7 +39,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       lang="en"
       className={`${fraunces.variable} ${inter.variable} ${jetbrainsMono.variable} h-full antialiased`}
     >
-      <body className="text-graphite flex min-h-full flex-col bg-white font-sans">
+      <body className="text-graphite flex min-h-full flex-col bg-white font-sans" suppressHydrationWarning>
         <GrainOverlay />
         <Nav />
         <main className="flex-1">{children}</main>

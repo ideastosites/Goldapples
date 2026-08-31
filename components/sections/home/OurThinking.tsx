@@ -47,7 +47,7 @@ export function OurThinking() {
               <p className="font-mono text-xs font-semibold tracking-[0.2em] uppercase text-gold-deep mb-6">
                 Our Thinking
               </p>
-              <h2 className="font-serif text-3xl leading-[1.15] text-white lg:text-4xl mb-6">
+              <h2 className="font-serif text-[2rem] leading-[1.15] text-white lg:text-[2.5rem] mb-6">
                 {ourThinking.heading}
               </h2>
               <p className="text-champagne/80 text-lg leading-relaxed max-w-[55ch] mx-auto">
@@ -73,13 +73,7 @@ export function OurThinking() {
 
         {/* Footer section */}
         <div className="grid lg:grid-cols-12 gap-6 items-center border-t border-white/10 pt-12 max-w-[1000px] mx-auto">
-          <div className="lg:col-span-8">
-            <Reveal delay={0.4}>
-              <p className="text-[17px] text-champagne/60 italic border-l-2 border-gold-deep/50 pl-5">
-                &ldquo;{ourThinking.closing}&rdquo;
-              </p>
-            </Reveal>
-          </div>
+          <div className="hidden lg:block lg:col-span-8"></div>
           <div className="lg:col-span-4 lg:text-right">
             <Reveal delay={0.5}>
               <Button href={ourThinking.cta.href} variant="gold">
