@@ -10,7 +10,6 @@ export const caseStudies = [
   {
     title: "Strengthening Media Capacity for Public-Interest Reporting",
     sector: "Development communication / media capacity building",
-    image: "/assets/photography/journalists-session.jpg",
     challenge:
       "Journalists needed stronger tools for reporting complex public-interest issues accurately and usefully.",
     approach:
@@ -23,7 +22,6 @@ export const caseStudies = [
   {
     title: "Executive Communication for High-Stakes Environments",
     sector: "Leadership development / executive education",
-    image: "/assets/photography/academy-session.jpg",
     challenge:
       "Senior professionals faced situations where poor communication could affect trust, credibility and stakeholder confidence.",
     approach:
@@ -35,7 +33,6 @@ export const caseStudies = [
   {
     title: "Communication Support for Institutional Alignment",
     sector: "Organisational communication",
-    image: "/assets/photography/founder-session.jpg",
     challenge:
       "A leadership message was losing meaning as it travelled through teams and implementation structures.",
     approach:
