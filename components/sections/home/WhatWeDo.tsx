@@ -1,48 +1,31 @@
-import { Reveal } from "@/components/ui/Reveal";
 import { Container } from "@/components/ui/Container";
-import { DuotonePhoto } from "@/components/ui/DuotonePhoto";
+import { Reveal } from "@/components/ui/Reveal";
+import { Eyebrow } from "@/components/ui/Eyebrow";
 import { whatWeDo } from "@/content/home";
 
 export function WhatWeDo() {
   return (
-    <section className="bg-white py-24 lg:py-32">
-      <Container>
-        <div className="grid lg:grid-cols-12 gap-12 lg:gap-16 items-center">
-          
-          {/* Left side text */}
-          <div className="lg:col-span-6 lg:pr-6">
-            <Reveal>
-              <p className="font-mono text-[11px] font-semibold tracking-[0.25em] uppercase text-gold-deep mb-6">
-                What We Do
-              </p>
-              <h2 className="font-serif text-[2rem] leading-[1.12] text-ink lg:text-[2.5rem] mb-10 max-w-[20ch]">
-                We help organisations close the gap between <span className="italic">intention</span> and <span className="italic">execution.</span>
-              </h2>
+    <section className="bg-graphite py-24 lg:py-32">
+      <Container className="grid gap-10 lg:grid-cols-12">
+        <div className="lg:col-span-5">
+          <Reveal>
+            <Eyebrow tone="champagne">03 — What We Do</Eyebrow>
+            <h2 className="mt-4 max-w-[18ch] font-serif text-3xl leading-tight text-white lg:text-4xl">
+              {whatWeDo.heading}
+            </h2>
+          </Reveal>
+        </div>
+        <div className="flex flex-col gap-5 lg:col-span-6 lg:col-start-7">
+          {whatWeDo.paragraphs.map((p, i) => (
+            <Reveal
+              key={p}
+              as="p"
+              delay={i * 0.05}
+              className="text-champagne/75 max-w-[68ch] text-lg leading-relaxed"
+            >
+              {p}
             </Reveal>
-            <div className="space-y-8 relative">
-              {/* Refined thin gold hairline */}
-              <div className="absolute left-0 top-2 bottom-2 w-[1px] bg-gradient-to-b from-gold-deep via-gold-deep/30 to-transparent" />
-              
-              {whatWeDo.paragraphs.map((p, i) => (
-                <Reveal key={i} as="p" delay={0.15 + i * 0.1} className="text-steel text-[17px] leading-relaxed pl-6">
-                  {p}
-                </Reveal>
-              ))}
-            </div>
-          </div>
-
-          {/* Right side flat image */}
-          <div className="lg:col-span-6">
-            <Reveal delay={0.3} className="relative aspect-square md:aspect-[4/5] w-full max-w-[480px] mx-auto lg:ml-auto rounded-[3px] overflow-hidden shadow-sm">
-              <DuotonePhoto
-                src="/What_we_do.jpg"
-                alt="Goldapples advisory session"
-                tone="ink-gold"
-                className="absolute inset-0 w-full h-full"
-              />
-            </Reveal>
-          </div>
-
+          ))}
         </div>
       </Container>
     </section>

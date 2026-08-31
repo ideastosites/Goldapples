@@ -1,135 +1,116 @@
-import { Reveal } from "@/components/ui/Reveal";
 import { Container } from "@/components/ui/Container";
+import { Reveal } from "@/components/ui/Reveal";
+import { Eyebrow } from "@/components/ui/Eyebrow";
 import { Button } from "@/components/ui/Button";
+import { IconSwatch } from "@/components/ui/IconSwatch";
 import { DuotonePhoto } from "@/components/ui/DuotonePhoto";
+import {
+  IconAcademy,
+  IconLab,
+  IconReview,
+  IconGovernment,
+  IconDevelopment,
+  IconMedia,
+  IconAdvisory,
+  IconGovernment as IconPublicSector,
+  IconDiagnose,
+  IconAcademy as IconEducation,
+} from "@/components/icons";
 import { featuredProgrammes } from "@/content/home";
+
+const programmeIcons = [
+  IconAcademy,
+  IconLab,
+  IconReview,
+  IconGovernment,
+  IconDevelopment,
+];
+
+const moduleIcons = [
+  IconReview,
+  IconMedia,
+  IconAdvisory,
+  IconPublicSector,
+  IconEducation,
+  IconDiagnose,
+];
 
 export function FeaturedProgrammes() {
   return (
-    <section className="bg-champagne py-24 lg:py-32">
+    <section className="py-24 lg:py-32">
       <Container>
-        {/* Header */}
-        <Reveal className="mb-16 max-w-[600px]">
-          <p className="font-mono text-[11px] font-semibold tracking-[0.25em] uppercase text-gold-deep mb-4">
+        <Reveal className="max-w-[70ch]">
+          <Eyebrow>07 — Featured Programmes</Eyebrow>
+          <h2 className="text-ink mt-4 font-serif text-3xl leading-tight lg:text-4xl">
             Featured Programmes
-          </p>
-          <h2 className="text-ink font-serif text-[2rem] leading-tight lg:text-[2.5rem] mb-5">
-            {featuredProgrammes.heading}
           </h2>
-          <p className="text-graphite text-[17px] leading-relaxed mb-8">
+          <p className="text-steel mt-5 text-lg leading-relaxed">
             {featuredProgrammes.intro}
           </p>
-          <Button href="/academy" variant="gold">
-            Explore the Academy
-          </Button>
         </Reveal>
 
-        {/* Bento mosaic — mixed images + text cards */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
-          {/* Programme 1 — Large image card */}
-          <Reveal className="lg:col-span-2 lg:row-span-2 h-full">
-            <div className="relative h-full min-h-[400px] lg:min-h-[520px] rounded-[3px] overflow-hidden group transition-all duration-300 hover:shadow-xl hover:shadow-gold-deep/10 hover:-translate-y-1">
-              <DuotonePhoto
-                src="/Executive Communication Masterclass.jpg"
-                alt={featuredProgrammes.programmes[0].title}
-                tone="ink-gold"
-                className="absolute inset-0 w-full h-full transition-transform duration-700 ease-out group-hover:scale-105"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-ink via-ink/40 to-transparent" />
-              <div className="absolute bottom-0 left-0 right-0 p-8 lg:p-10 z-10">
-                <span className="mb-3 block font-mono text-[10px] font-semibold tracking-[0.25em] uppercase text-gold">
-                  Flagship Programme
-                </span>
-                <h3 className="font-serif text-[22px] text-white leading-snug mb-3">
-                  {featuredProgrammes.programmes[0].title}
-                </h3>
-                <p className="text-champagne/80 text-[15px] leading-relaxed max-w-[50ch]">
-                  {featuredProgrammes.programmes[0].description}
-                </p>
-              </div>
-            </div>
-          </Reveal>
-
-          {/* Programme 2 — text card on ink */}
-          <Reveal delay={0.1} className="h-full">
-            <div className="bg-ink rounded-[3px] p-8 flex flex-col justify-between h-full min-h-[240px] group transition-all duration-300 hover:shadow-xl hover:shadow-ink/10 hover:-translate-y-1">
-              <div>
-                <h3 className="font-serif text-[19px] text-white leading-snug mb-3 group-hover:text-gold-deep transition-colors">
-                  {featuredProgrammes.programmes[1].title}
-                </h3>
-                <p className="text-champagne/70 text-[15px] leading-relaxed">
-                  {featuredProgrammes.programmes[1].description}
-                </p>
-              </div>
-            </div>
-          </Reveal>
-
-          {/* Programme 3 — image thumbnail card */}
-          <Reveal delay={0.15} className="h-full">
-            <div className="relative rounded-[3px] overflow-hidden min-h-[240px] h-full group transition-all duration-300 hover:shadow-xl hover:shadow-gold-deep/10 hover:-translate-y-1">
-              <DuotonePhoto
-                src="/Communicating Credibility.jpg"
-                alt={featuredProgrammes.programmes[2].title}
-                tone="gold"
-                className="absolute inset-0 w-full h-full transition-transform duration-700 ease-out group-hover:scale-105"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-ink/80 to-transparent" />
-              <div className="absolute bottom-0 left-0 right-0 p-6 z-10">
-                <h3 className="font-serif text-lg text-white leading-snug">
-                  {featuredProgrammes.programmes[2].title}
-                </h3>
-              </div>
-            </div>
-          </Reveal>
-
-          {/* Programme 4 — text card on white */}
-          <Reveal delay={0.2} className="h-full">
-            <div className="bg-white rounded-[3px] p-8 flex flex-col justify-between h-full border border-graphite/10 min-h-[220px] group transition-all duration-300 hover:shadow-xl hover:shadow-ink/5 hover:-translate-y-1">
-              <div>
-                <h3 className="font-serif text-[19px] text-ink leading-snug mb-3 group-hover:text-gold-deep transition-colors">
-                  {featuredProgrammes.programmes[3].title}
-                </h3>
-                <p className="text-steel text-[15px] leading-relaxed">
-                  {featuredProgrammes.programmes[3].description}
-                </p>
-              </div>
-            </div>
-          </Reveal>
-
-          {/* Programme 5 — text card on graphite */}
-          <Reveal delay={0.25} className="h-full">
-            <div className="bg-graphite rounded-[3px] p-8 flex flex-col justify-between h-full min-h-[220px] group transition-all duration-300 hover:shadow-xl hover:-translate-y-1">
-              <div>
-                <h3 className="font-serif text-[19px] text-white leading-snug mb-3 group-hover:text-gold-deep transition-colors">
-                  {featuredProgrammes.programmes[4].title}
-                </h3>
-                <p className="text-champagne/70 text-[15px] leading-relaxed">
-                  {featuredProgrammes.programmes[4].description}
-                </p>
-              </div>
-            </div>
-          </Reveal>
-
-          {/* Industry modules card */}
-          <Reveal delay={0.3} className="h-full">
-            <div className="bg-gold-deep rounded-[3px] p-8 h-full min-h-[220px] transition-transform duration-300 hover:-translate-y-1">
-              <h3 className="font-serif text-[19px] text-ink mb-5">
-                {featuredProgrammes.industryModulesIntro}
+        <div className="mt-14 grid gap-4 lg:grid-cols-3">
+          <Reveal className="border-graphite/12 relative row-span-2 flex min-h-[420px] flex-col justify-end overflow-hidden rounded-[3px] border p-8 lg:min-h-[600px]">
+            <DuotonePhoto
+              src="/assets/photography/academy-session.jpg"
+              alt="A Goldapples executive session in progress in Abuja"
+              tone="ink-gold"
+              className="absolute inset-0"
+              sizes="(min-width: 1024px) 33vw, 100vw"
+            />
+            <div className="relative">
+              <h3 className="font-serif text-2xl text-white">
+                {featuredProgrammes.programmes[0].title}
               </h3>
-              <ul className="space-y-2.5">
-                {featuredProgrammes.industryModules.map((mod) => (
-                  <li key={mod.sector} className="flex items-center gap-2.5 text-[14px] text-ink/90">
-                    <span className="w-1.5 h-1.5 rounded-full bg-ink/40 shrink-0" />
-                    {mod.sector}
-                  </li>
-                ))}
-              </ul>
+              <p className="text-champagne/80 mt-3 text-[15px] leading-relaxed">
+                {featuredProgrammes.programmes[0].description}
+              </p>
             </div>
           </Reveal>
+
+          {featuredProgrammes.programmes.slice(1).map((programme, i) => (
+            <Reveal key={programme.title} delay={(i + 1) * 0.05}>
+              <div className="border-graphite/12 flex h-full flex-col gap-4 rounded-[3px] border bg-white p-7">
+                <IconSwatch icon={programmeIcons[i + 1]} tone="outline-dark" />
+                <h3 className="text-ink font-sans text-lg font-semibold">
+                  {programme.title}
+                </h3>
+                <p className="text-steel flex-1 text-[15px] leading-relaxed">
+                  {programme.description}
+                </p>
+              </div>
+            </Reveal>
+          ))}
         </div>
 
-        {/* CTA */}
-        <Reveal className="mt-14 flex justify-center">
+        <Reveal className="from-gold-deep to-gold mt-16 rounded-[3px] bg-linear-to-br p-8 lg:p-10">
+          <h3 className="text-ink font-serif text-2xl">
+            Industry-Specific Communication Modules
+          </h3>
+          <p className="text-ink/80 mt-3 max-w-[70ch] text-[15px] leading-relaxed">
+            {featuredProgrammes.industryModulesIntro}
+          </p>
+          <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            {featuredProgrammes.industryModules.map((module, i) => (
+              <div key={module.sector} className="flex items-start gap-3">
+                <IconSwatch icon={moduleIcons[i]} tone="ink" className="mt-0.5" />
+                <div>
+                  <span className="text-ink block text-[15px] font-semibold">
+                    {module.sector}
+                  </span>
+                  <span className="text-ink/70 text-sm leading-relaxed">
+                    {module.description}
+                  </span>
+                </div>
+              </div>
+            ))}
+          </div>
+        </Reveal>
+
+        <Reveal className="mt-10 flex flex-col items-start gap-6">
+          <p className="text-steel text-sm">
+            {featuredProgrammes.industryModulesClosing}
+          </p>
           <Button href={featuredProgrammes.cta.href} variant="primary">
             {featuredProgrammes.cta.label}
           </Button>

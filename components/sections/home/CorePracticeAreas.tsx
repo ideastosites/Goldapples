@@ -1,7 +1,7 @@
 import Link from "next/link";
-import { Reveal } from "@/components/ui/Reveal";
 import { Container } from "@/components/ui/Container";
-import { DuotonePhoto } from "@/components/ui/DuotonePhoto";
+import { Reveal } from "@/components/ui/Reveal";
+import { Eyebrow } from "@/components/ui/Eyebrow";
 import { IconSwatch } from "@/components/ui/IconSwatch";
 import {
   IconAdvisory,
@@ -11,109 +11,64 @@ import {
 } from "@/components/icons";
 import { corePracticeAreas } from "@/content/home";
 
-const cards = [
+const icons = [IconAdvisory, IconAcademy, IconDevelopment, IconMedia];
+
+const cardTones = [
   {
-    icon: IconAdvisory,
-    src: "/Communication Advisory.jpg",
-    iconTone: "gold" as const,
-    tone: "ink-gold" as const,
-    imgAlt: "Advisory session with executive leaders",
-    cardBg: "bg-ink",
-    textColor: "text-white",
-    mutedColor: "text-champagne/75",
-    linkColor: "text-gold border-gold/40 hover:border-gold",
-    hoverBorder: "hover:border-gold/30",
+    card: "bg-ink text-white",
+    swatch: "gold" as const,
+    link: "border-white/40 hover:border-white hover:text-gold",
   },
   {
-    icon: IconAcademy,
-    src: "/Executive Communication Academy.jpg",
-    iconTone: "ink" as const,
-    tone: "gold" as const,
-    imgAlt: "Executive communication training workshop",
-    cardBg: "bg-white border border-graphite/10",
-    textColor: "text-ink",
-    mutedColor: "text-steel",
-    linkColor: "text-ink border-ink/25 hover:border-ink",
-    hoverBorder: "hover:border-gold-deep/40 hover:shadow-lg hover:shadow-gold-deep/5",
+    card: "border border-graphite/12 bg-white text-ink",
+    swatch: "outline-dark" as const,
+    link: "border-ink/40 hover:border-ink hover:text-gold-deep",
   },
   {
-    icon: IconDevelopment,
-    src: "/Development Communication Practice.jpg",
-    iconTone: "ink" as const,
-    tone: "ink" as const,
-    imgAlt: "Development communication programme delivery",
-    cardBg: "bg-white border border-graphite/10",
-    textColor: "text-ink",
-    mutedColor: "text-steel",
-    linkColor: "text-ink border-ink/25 hover:border-ink",
-    hoverBorder: "hover:border-gold-deep/40 hover:shadow-lg hover:shadow-gold-deep/5",
+    card: "bg-champagne text-ink",
+    swatch: "ink" as const,
+    link: "border-ink/40 hover:border-ink hover:text-gold-deep",
   },
   {
-    icon: IconMedia,
-    src: "/Media and Narrative Strategy.jpg",
-    iconTone: "gold" as const,
-    tone: "ink-gold" as const,
-    imgAlt: "Media strategy and narrative session",
-    cardBg: "bg-graphite",
-    textColor: "text-white",
-    mutedColor: "text-champagne/70",
-    linkColor: "text-gold border-gold/40 hover:border-gold",
-    hoverBorder: "hover:border-gold/30",
+    card: "border border-graphite/12 bg-white text-ink",
+    swatch: "outline-dark" as const,
+    link: "border-ink/40 hover:border-ink hover:text-gold-deep",
   },
 ];
 
 export function CorePracticeAreas() {
   return (
-    <section className="bg-champagne py-24 lg:py-32">
+    <section className="py-24 lg:py-32">
       <Container>
-        <Reveal className="mb-14 max-w-[600px]">
-          <p className="font-mono text-[11px] font-semibold tracking-[0.25em] uppercase text-gold-deep mb-4">
+        <Reveal>
+          <Eyebrow>04 — Core Practice Areas</Eyebrow>
+          <h2 className="text-ink mt-4 max-w-[24ch] font-serif text-3xl leading-tight lg:text-4xl">
             Our Core Practice Areas
-          </p>
-          <h2 className="text-ink font-serif text-3xl leading-tight lg:text-[2.5rem]">
-            Four practices. One purpose.
           </h2>
         </Reveal>
 
-        {/* 2×2 equal grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div className="mt-14 grid gap-6 md:grid-cols-2 lg:grid-cols-4">
           {corePracticeAreas.map((area, i) => {
-            const card = cards[i];
+            const tone = cardTones[i];
+            const muted = tone.card.includes("text-white")
+              ? "text-champagne/75"
+              : "text-steel";
             return (
-              <Reveal key={area.title} delay={i * 0.08}>
-                <div 
-                  className={`
-                    ${card.cardBg} ${card.hoverBorder} 
-                    rounded-[3px] overflow-hidden group h-full flex flex-col 
-                    transition-all duration-300 ease-out hover:-translate-y-1
-                  `}
+              <Reveal key={area.title} delay={i * 0.05}>
+                <div
+                  className={`flex h-full flex-col gap-4 rounded-[3px] p-8 transition-transform duration-150 ease-out hover:-translate-y-0.5 ${tone.card}`}
                 >
-                  {/* Image area */}
-                  <div className="relative h-56 lg:h-64 overflow-hidden">
-                    <DuotonePhoto
-                      src={card.src}
-                      alt={card.imgAlt}
-                      tone={card.tone}
-                      className="absolute inset-0 w-full h-full transition-transform duration-700 ease-out group-hover:scale-105"
-                    />
-                  </div>
-
-                  {/* Content area */}
-                  <div className="flex flex-col flex-1 p-8">
-                    <IconSwatch icon={card.icon} tone={card.iconTone} className="mb-5" />
-                    <h3 className={`font-serif text-[22px] leading-snug ${card.textColor} mb-3`}>
-                      {area.title}
-                    </h3>
-                    <p className={`text-[15px] leading-relaxed ${card.mutedColor} mb-6 flex-1`}>
-                      {area.description}
-                    </p>
-                    <Link
-                      href={area.cta.href}
-                      className={`inline-flex items-center gap-1.5 self-start border-b py-1 text-sm font-semibold transition-colors ${card.linkColor}`}
-                    >
-                      {area.cta.label} <span aria-hidden="true" className="transition-transform group-hover:translate-x-1">→</span>
-                    </Link>
-                  </div>
+                  <IconSwatch icon={icons[i]} tone={tone.swatch} />
+                  <h3 className="font-sans text-xl font-semibold">{area.title}</h3>
+                  <p className={`flex-1 text-[15px] leading-relaxed ${muted}`}>
+                    {area.description}
+                  </p>
+                  <Link
+                    href={area.cta.href}
+                    className={`min-h-11 self-start border-b py-2 text-sm font-semibold transition-colors duration-150 ${tone.link}`}
+                  >
+                    {area.cta.label}
+                  </Link>
                 </div>
               </Reveal>
             );

@@ -1,10 +1,7 @@
 import { NextResponse } from "next/server";
 import { Resend } from "resend";
-import { formFields } from "@/content/contact";
+import { supportOptions, responseMethods } from "@/content/contact";
 import { footerContent } from "@/content/site";
-
-const supportOptions = formFields.find(f => f.name === "supportType")?.options || [];
-const responseMethods = formFields.find(f => f.name === "preferredResponse")?.options || [];
 
 type ContactPayload = {
   name: string;
@@ -23,8 +20,7 @@ function validate(body: Partial<ContactPayload>): string | null {
   if (!body.organisation?.trim()) return "Organisation is required.";
   if (!body.email?.trim() || !EMAIL_RE.test(body.email))
     return "A valid email is required.";
-  // Note: Phone is not strictly required in the UI, but it's checked here. Let's make it optional.
-  if (body.phone && body.phone.trim().length > 20) return "Phone number is too long.";
+  if (!body.phone?.trim()) return "Phone number is required.";
   if (!body.supportType || !supportOptions.includes(body.supportType)) {
     return "Please select what you need support with.";
   }

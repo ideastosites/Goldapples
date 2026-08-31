@@ -1,42 +1,31 @@
-import { Reveal } from "@/components/ui/Reveal";
 import { Container } from "@/components/ui/Container";
-import { SignalDivider } from "@/components/ui/SignalDivider";
+import { Reveal } from "@/components/ui/Reveal";
+import { Eyebrow } from "@/components/ui/Eyebrow";
 import { openingBelief } from "@/content/home";
 
 export function OpeningBelief() {
   return (
-    <section className="bg-champagne py-32 lg:py-40 text-center">
-      <Container>
-        <div className="max-w-[800px] mx-auto">
+    <section className="bg-champagne py-24 lg:py-32">
+      <Container className="grid gap-10 lg:grid-cols-12">
+        <div className="lg:col-span-4">
           <Reveal>
-            <p className="font-mono text-xs font-semibold tracking-[0.2em] uppercase text-gold-deep mb-6">
-              Our Belief
-            </p>
-            <h2 className="font-serif text-[2rem] leading-[1.15] text-ink lg:text-[2.75rem] mb-12 max-w-[25ch] mx-auto">
-              Communication is <span className="italic">not</span> just messaging. It is infrastructure.
+            <Eyebrow>02 — Opening Belief</Eyebrow>
+            <h2 className="text-ink mt-4 max-w-[14ch] font-serif text-3xl leading-tight lg:text-4xl">
+              {openingBelief.heading}
             </h2>
           </Reveal>
-
-          <Reveal delay={0.1}>
-            <SignalDivider tone="gold" className="mb-12" />
-          </Reveal>
-
-          <div className="space-y-6 text-left max-w-[65ch] mx-auto">
-            <Reveal as="div" delay={0.2} className="relative">
-              <p className="text-graphite text-[19px] leading-relaxed">
-                {/* Drop cap for editorial feel */}
-                <span className="float-left text-6xl font-serif text-gold-deep leading-[0.8] pr-3 pt-2 pb-1">
-                  O
-                </span>
-                <span className="sr-only">O</span>
-                rganisations rarely fail for lack of ideas or resources — they fail when meaning breaks down. Instructions are heard but not understood. Reforms are designed but resisted. Teams work hard but move in different directions.
-              </p>
+        </div>
+        <div className="flex flex-col gap-5 lg:col-span-7 lg:col-start-6">
+          {openingBelief.paragraphs.map((p, i) => (
+            <Reveal
+              key={p}
+              as="p"
+              delay={i * 0.05}
+              className="text-graphite max-w-[68ch] text-lg leading-relaxed"
+            >
+              {p}
             </Reveal>
-            
-            <Reveal as="p" delay={0.3} className="text-graphite text-[19px] leading-relaxed">
-              We treat communication as the operating system of leadership and institutional performance, and help organisations create, transmit and sustain meaning people can trust and act on.
-            </Reveal>
-          </div>
+          ))}
         </div>
       </Container>
     </section>

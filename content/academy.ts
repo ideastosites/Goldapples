@@ -1,112 +1,89 @@
-export const academyHero = {
+export const academyIntro = {
+  eyebrow: "Academy",
   heading: "Goldapples Communication Academy",
-  body: "Practical communication learning for leaders, professionals and institutions. The Goldapples Communication Academy develops communication capability through masterclasses, labs, workshops, coaching and simulation-based learning. Our programmes are designed for people whose work depends on clarity, credibility, influence and public trust.",
+  lead: "Practical communication learning for leaders, professionals and institutions.",
+  body: "The Goldapples Communication Academy builds communication capability through masterclasses, labs, workshops, coaching and simulation-based learning — for people whose work depends on clarity, credibility, influence and public trust.",
 };
 
-export const programmes = [
+export const programmeCategories = [
   {
+    id: "executive-communication-masterclass",
     title: "Executive Communication Masterclass",
-    target: "For senior professionals, executives, managers and public-facing leaders.",
-    description: "Participants learn how to communicate ideas, decisions and strategy with clarity, structure, confidence and credibility.",
-    themes: [
-      "message clarity",
-      "executive presence",
-      "strategic listening",
-      "high-stakes speaking",
-      "stakeholder communication",
-      "credibility under pressure",
-      "communication and leadership trust"
-    ]
+    audience: "For senior professionals, executives and public-facing leaders.",
+    body: "Learn to communicate ideas, decisions and strategy with clarity, structure and credibility.",
+    themes:
+      "Key themes: message clarity, executive presence, strategic listening, high-stakes speaking, stakeholder communication, credibility under pressure.",
   },
   {
+    id: "leadership-communication-lab",
     title: "Leadership Communication Lab",
-    target: "A practical lab for leaders who need to align teams, manage meaning and improve execution.",
-    description: "The lab uses scenarios, simulations, role-play, message analysis, and peer feedback to strengthen leadership communication behaviour.",
-    themes: [
-      "aligning intention and interpretation",
-      "communicating change",
-      "managing meaning drift",
-      "cascading messages",
-      "difficult conversations",
-      "trust-building language",
-      "feedback and listening systems"
-    ]
+    audience:
+      "A practical lab for leaders who need to align teams and improve execution, using scenarios, simulations, role-play and peer feedback.",
+    body: "",
+    themes:
+      "Key themes: aligning intention and interpretation, communicating change, managing meaning drift, difficult conversations, trust-building language.",
   },
   {
+    id: "communicating-credibility",
     title: "Communicating Credibility",
-    target: "For professionals and leaders whose work requires trust.",
-    description: "This programme helps participants understand how credibility is built or damaged through language, tone, timing, structure, consistency and behaviour.",
-    themes: [
-      "trust signals",
-      "clarity and confidence",
-      "professional presence",
-      "reputational communication",
-      "managing perception",
-      "credibility in meetings, interviews and public engagements"
-    ]
+    audience:
+      "For professionals and leaders whose work requires trust — how credibility is built or damaged through language, tone, timing and consistency.",
+    body: "",
+    themes:
+      "Key themes: trust signals, professional presence, managing perception, credibility in meetings and public engagements.",
   },
   {
+    id: "communication-for-public-institutions",
     title: "Communication for Public Institutions",
-    target: "For government officials, public-sector leaders and institutional communication teams.",
-    description: "This programme focuses on how to communicate policies, reforms, public decisions and institutional priorities in ways that citizens and stakeholders can understand and trust.",
-    themes: [
-      "public communication",
-      "policy translation",
-      "citizen engagement",
-      "media management",
-      "communicating reform",
-      "reducing public misunderstanding",
-      "managing sensitive messaging"
-    ]
+    audience:
+      "For government officials and institutional communication teams — how to communicate policies, reforms and priorities so citizens and stakeholders understand and trust them.",
+    body: "",
+    themes:
+      "Key themes: policy translation, citizen engagement, media management, communicating reform.",
   },
   {
+    id: "development-communication-training",
     title: "Development Communication Training",
-    target: "For journalists, development actors, civil society organisations and communication teams working on public-interest issues, such as:",
-    themes: [
-      "human-centred storytelling",
-      "solutions-oriented reporting",
-      "development narratives",
-      "responsible media engagement",
-      "communicating governance",
-      "climate and social impact communication",
-      "public-interest framing"
-    ]
-  }
+    audience:
+      "For journalists, development actors and civil society organisations working on public-interest issues.",
+    body: "",
+    themes:
+      "Key themes: human-centred storytelling, solutions-oriented reporting, responsible media engagement, climate and social impact communication.",
+  },
 ];
 
 export const deliveryFormats = {
-  heading: "Delivery Formats",
-  intro: "Goldapples programmes can be delivered as:",
-  formats: [
-    "half-day sessions",
-    "one-day masterclasses",
-    "two-day workshops",
-    "executive retreats",
-    "virtual sessions",
-    "in-house organisational training",
-    "coaching cohorts",
-    "simulation labs",
-    "bespoke capacity-building programmes"
-  ]
+  eyebrow: "Delivery Formats",
+  items: [
+    "Half-day sessions",
+    "One-day masterclasses",
+    "Two-day workshops",
+    "Executive retreats",
+    "Virtual sessions",
+    "In-house organisational training",
+    "Coaching cohorts",
+    "Simulation labs",
+    "Bespoke capacity-building programmes",
+  ],
 };
 
-export const audiences = {
-  heading: "We service",
-  list: [
+export const weService = {
+  eyebrow: "We Service",
+  items: [
     "Executives",
-    "managers",
-    "public officials",
-    "project leads",
-    "communication teams",
-    "media professionals",
-    "civil society actors",
-    "development programme teams",
-    "educators",
-    "professionals preparing for public-facing roles"
-  ]
+    "Managers",
+    "Public officials",
+    "Project leads",
+    "Communication teams",
+    "Media professionals",
+    "Civil society actors",
+    "Development programme teams",
+    "Educators",
+    "Professionals preparing for public-facing roles",
+  ],
 };
 
 export const academyCta = {
   heading: "Would you like a tailored programme for your organisation?",
-  cta: { label: "Request a Programme Brief", href: "/contact" }
+  cta: { label: "Request a Programme Brief", href: "/contact" },
 };

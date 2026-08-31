@@ -2,10 +2,7 @@
 
 import { useState, type FormEvent } from "react";
 import { Button } from "@/components/ui/Button";
-import { formFields, contactCta } from "@/content/contact";
-
-const supportOptions = (formFields.find(f => f.name === "supportType")?.options as string[]) || [];
-const responseMethods = (formFields.find(f => f.name === "preferredResponse")?.options as string[]) || [];
+import { supportOptions, responseMethods, contactContent } from "@/content/contact";
 
 const fieldClasses =
   "border-graphite/20 focus:border-gold-deep w-full border-b bg-transparent px-0 py-3 text-base text-ink outline-none transition-colors duration-150 placeholder:text-steel/50";
@@ -162,7 +159,7 @@ export function ContactForm() {
         disabled={status === "submitting"}
         className="self-start disabled:opacity-60"
       >
-        {status === "submitting" ? "Sending…" : contactCta.label}
+        {status === "submitting" ? "Sending…" : contactContent.cta}
       </Button>
     </form>
   );
