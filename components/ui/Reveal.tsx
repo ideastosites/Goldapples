@@ -2,7 +2,6 @@
 
 import { motion, useReducedMotion } from "framer-motion";
 import type { ReactNode } from "react";
-import { useState, useEffect } from "react";
 import { revealVariants, revealViewport } from "@/lib/motion";
 
 const tagComponents = {
@@ -25,8 +24,6 @@ type RevealProps = {
 };
 
 export function Reveal({ children, as = "div", className, delay = 0 }: RevealProps) {
-  const [isMounted, setIsMounted] = useState(false);
-  useEffect(() => setIsMounted(true), []);
   const reducedMotion = useReducedMotion();
   const MotionTag = tagComponents[as];
 
@@ -36,8 +33,8 @@ export function Reveal({ children, as = "div", className, delay = 0 }: RevealPro
       initial="hidden"
       whileInView="visible"
       viewport={revealViewport}
-      variants={revealVariants(isMounted ? Boolean(reducedMotion) : false)}
-      transition={{ delay: (isMounted && reducedMotion) ? 0 : delay }}
+      variants={revealVariants(Boolean(reducedMotion))}
+      transition={{ delay: reducedMotion ? 0 : delay }}
     >
       {children}
     </MotionTag>

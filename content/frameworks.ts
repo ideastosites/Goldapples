@@ -32,31 +32,3 @@ export const frameworksCta = {
   heading: "Interested in applying these frameworks in your organisation?",
   cta: { label: "Book a Framework Session", href: "/contact" },
 };
-
-export const frameworksHowWeWork = [
-  {
-    number: "01",
-    title: "Diagnose",
-    description: "Understand the communication problem, the context and the people affected.",
-  },
-  {
-    number: "02",
-    title: "Clarify",
-    description: "Define the real message, the intended meaning, and the outcome required.",
-  },
-  {
-    number: "03",
-    title: "Design",
-    description: "Build the approaches, tools, messages or systems suited to the context.",
-  },
-  {
-    number: "04",
-    title: "Deliver",
-    description: "Support implementation through facilitation, coaching, training or advisory sessions.",
-  },
-  {
-    number: "05",
-    title: "Review",
-    description: "Assess what changed, what was understood, and what needs reinforcement.",
-  },
-];
