@@ -12,9 +12,9 @@ interface PageHeroProps {
 
 export function PageHero({ eyebrow, heading, body, lead }: PageHeroProps) {
   return (
-    <DarkSection className="relative overflow-hidden pt-32 pb-16 lg:pt-40 lg:pb-24">
-      <Container className="relative z-10">
-        <div className="max-w-[76ch]">
+    <DarkSection className="relative overflow-hidden pt-28 pb-12 lg:pt-36 lg:pb-16">
+      <Container className="relative z-10 lg:flex lg:flex-col lg:items-center lg:text-center">
+        <div className="max-w-[76ch] lg:mx-auto">
           <Reveal>
             <p className="font-mono text-xs font-bold uppercase tracking-[0.15em] text-gold-deep mb-6">
               {eyebrow}
@@ -31,7 +31,7 @@ export function PageHero({ eyebrow, heading, body, lead }: PageHeroProps) {
           </Reveal>
 
           <Reveal delay={0.16}>
-            <p className="mt-6 text-[17px] sm:text-lg leading-relaxed text-champagne/80">
+            <p className="mt-6 text-[17px] sm:text-lg leading-relaxed text-champagne/80 lg:text-justify">
               {body}
             </p>
           </Reveal>

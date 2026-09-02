@@ -9,6 +9,7 @@ import { contactContent, supportOptions, responseMethods } from "@/content/conta
 const formFields = [
   { name: "name", label: "Full Name", type: "text", required: true },
   { name: "email", label: "Email Address", type: "email", required: true },
+  { name: "phone", label: "Phone Number", type: "tel", required: true },
   { name: "support", label: "What kind of support do you need?", type: "select", options: supportOptions, required: true },
   { name: "method", label: "Preferred response method", type: "radio", options: responseMethods, required: true },
   { name: "details", label: "Brief Details", type: "textarea", required: true }
@@ -27,8 +28,8 @@ export default function ContactPage() {
   return (
     <>
       {/* Type-Led Editorial Hero */}
-      <section className="bg-ink pt-32 pb-16 lg:pt-40 lg:pb-24 overflow-hidden relative">
-        <Container>
+      <section className="bg-ink pt-28 pb-12 lg:pt-36 lg:pb-16 overflow-hidden relative">
+        <Container className="relative z-10 lg:flex lg:flex-col lg:items-center lg:text-center">
           <Reveal>
             <p className="font-mono text-xs font-bold tracking-[0.15em] uppercase text-gold-deep mb-6">
               {contactContent.eyebrow}
@@ -36,11 +37,11 @@ export default function ContactPage() {
             <h1 className="text-white font-serif text-4xl leading-[1.1] md:text-5xl lg:text-6xl max-w-[20ch]">
               {contactContent.heading}
             </h1>
-            <div className="mt-8 max-w-[55ch]">
-              <p className="text-champagne/80 text-[17px] md:text-lg leading-relaxed">
+            <div className="mt-8 max-w-[55ch] lg:mx-auto">
+              <p className="text-champagne/80 text-[17px] md:text-lg leading-relaxed lg:text-justify lg:mx-auto">
                 {mainParagraph}
               </p>
-              <p className="text-gold-deep font-serif text-xl md:text-2xl mt-6">
+              <p className="text-gold-deep font-serif text-xl md:text-2xl mt-6 lg:text-center">
                 {closingLine}
               </p>
             </div>
@@ -156,6 +157,38 @@ export default function ContactPage() {
                                 </span>
                               </label>
                             ))}
+                          </div>
+                        </div>
+                      );
+                    }
+
+                    if (field.type === "tel") {
+                      return (
+                        <div key={field.name} className="flex flex-col gap-3">
+                          <label htmlFor={field.name} className="text-ink font-semibold text-[15px]">
+                            {field.label} {field.required && <span className="text-gold-deep">*</span>}
+                          </label>
+                          <div className="flex gap-4">
+                            <select
+                              name={`${field.name}Code`}
+                              className="w-[110px] shrink-0 bg-transparent border-b border-graphite/20 pb-3 pt-1 text-ink text-[16px] focus:outline-none focus:border-gold-deep transition-colors cursor-pointer"
+                              defaultValue="+234"
+                            >
+                              <option value="+234">NG (+234)</option>
+                              <option value="+1">US (+1)</option>
+                              <option value="+44">UK (+44)</option>
+                              <option value="+27">ZA (+27)</option>
+                              <option value="+254">KE (+254)</option>
+                              <option value="+233">GH (+233)</option>
+                            </select>
+                            <input
+                              type="tel"
+                              id={field.name}
+                              name={field.name}
+                              required={field.required}
+                              className="flex-1 bg-transparent border-b border-graphite/20 pb-3 pt-1 text-ink text-[16px] focus:outline-none focus:border-gold-deep transition-colors"
+                              placeholder="Phone number"
+                            />
                           </div>
                         </div>
                       );
