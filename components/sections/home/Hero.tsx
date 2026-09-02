@@ -108,7 +108,7 @@ export function Hero() {
 
             {/* Supporting body */}
             <motion.p
-              className="max-w-[55ch] text-lg leading-relaxed text-champagne/80 mb-10"
+              className="hidden lg:block max-w-[55ch] text-lg leading-relaxed text-champagne/80 mb-10"
               custom={2}
               variants={reducedMotion ? undefined : fadeUp}
               initial={reducedMotion ? undefined : "hidden"}

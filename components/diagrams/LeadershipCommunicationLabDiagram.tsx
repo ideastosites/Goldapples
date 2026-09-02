@@ -6,15 +6,15 @@ const stages = [
 ];
 
 export function LeadershipCommunicationLabDiagram() {
-  const cx = 260;
+  const cx = 160;
   const cy = 70;
-  const r = 34;
+  const r = 40;
   const labelOffset = 22;
 
   return (
     <svg
-      viewBox="0 0 520 140"
-      className="w-full"
+      viewBox="0 0 320 140"
+      className="w-full h-full max-h-[220px]"
       role="img"
       aria-label="Diagram: a repeating cycle of scenario, practice, feedback and refine."
     >
@@ -37,18 +37,18 @@ export function LeadershipCommunicationLabDiagram() {
         let anchor: "middle" | "start" | "end" = "middle";
 
         if (stage.angle === 0) { // Practice (right)
-          labelX = x + 14;
+          labelX = x + 16;
           labelY = y + 4;
           anchor = "start";
         } else if (stage.angle === 180) { // Refine (left)
-          labelX = x - 14;
+          labelX = x - 16;
           labelY = y + 4;
           anchor = "end";
         } else if (stage.angle === -90) { // Scenario (top)
-          labelY = y - 12;
+          labelY = y - 14;
           anchor = "middle";
         } else if (stage.angle === 90) { // Feedback (bottom)
-          labelY = y + 18;
+          labelY = y + 20;
           anchor = "middle";
         }
 
@@ -59,7 +59,7 @@ export function LeadershipCommunicationLabDiagram() {
               x={labelX}
               y={labelY}
               textAnchor={anchor}
-              className="fill-ink font-sans text-[11px] font-medium"
+              className="fill-ink font-sans text-[12px] font-medium"
             >
               {stage.label}
             </text>

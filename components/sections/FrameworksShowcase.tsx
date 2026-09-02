@@ -104,8 +104,10 @@ export function FrameworksShowcase({ frameworks }: { frameworks: Framework[] }) 
               </div>
             </div>
             
-            <div className="border border-graphite/10 bg-[#FAFAFA] p-6 sm:p-10 rounded-[2px] flex flex-col items-center justify-center min-h-[220px] sm:min-h-[280px]">
-              {ActiveDiagram}
+            <div className="w-full border border-graphite/10 bg-[#FAFAFA] py-8 sm:p-10 rounded-[2px] overflow-x-auto">
+              <div className="w-full px-6 sm:px-0 flex flex-col items-center justify-center min-h-[220px] sm:min-h-[280px]">
+                {ActiveDiagram}
+              </div>
             </div>
           </motion.div>
         </AnimatePresence>

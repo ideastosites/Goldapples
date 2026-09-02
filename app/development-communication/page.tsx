@@ -29,6 +29,8 @@ export const metadata: Metadata = {
   description: seo.developmentCommunication.description,
 };
 
+
+
 // Map each area to an icon from the custom set
 const differentiatorIcons = [
   IconDiagnose,
@@ -42,9 +44,9 @@ export default function DevelopmentCommunicationPage() {
   return (
     <>
       {/* 1. Intro (Dark solid hero header - using About/Advisory page Intro layout) */}
-      <DarkSection className="pt-32 pb-16 lg:pt-48 lg:pb-24 relative">
-        <Container>
-          <div className="max-w-[700px]">
+      <DarkSection className="pt-28 pb-12 lg:pt-36 lg:pb-16 relative">
+        <Container className="relative z-10 lg:flex lg:flex-col lg:items-center lg:text-center">
+          <div className="max-w-[700px] lg:mx-auto">
             <Reveal>
               <p className="font-mono text-[11px] font-bold tracking-[0.2em] uppercase text-gold-deep mb-6">
                 {devCommIntro.eyebrow}
@@ -62,7 +64,7 @@ export default function DevelopmentCommunicationPage() {
               <Reveal
                 as="p"
                 delay={0.2}
-                className="text-white/60 text-[15px] leading-[1.7] max-w-[65ch] font-sans"
+                className="text-white/60 text-[15px] leading-[1.7] max-w-[65ch] font-sans lg:text-justify lg:mx-auto"
               >
                 {devCommIntro.body}
               </Reveal>

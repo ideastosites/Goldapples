@@ -11,7 +11,7 @@ export function LeadershipAlignmentDiagram() {
   return (
     <svg
       viewBox="0 0 520 140"
-      className="w-full"
+      className="w-full min-w-[500px]"
       role="img"
       aria-label="Diagram: six parallel lanes representing alignment across intent, message, interpretation, behaviour, trust, and execution."
     >

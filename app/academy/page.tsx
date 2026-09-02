@@ -53,16 +53,16 @@ export default function AcademyPage() {
   return (
     <>
       {/* Type-Led Editorial Hero */}
-      <section className="bg-ink pt-32 pb-16 lg:pt-40 lg:pb-24 overflow-hidden relative">
-        <Container>
+      <section className="bg-ink pt-28 pb-12 lg:pt-36 lg:pb-16 overflow-hidden relative">
+        <Container className="lg:flex lg:flex-col lg:items-center lg:text-center">
           <Reveal>
             <p className="font-mono text-xs font-bold tracking-[0.15em] uppercase text-gold-deep mb-6">
               {academyIntro.eyebrow}
             </p>
-            <h1 className="text-white font-serif text-4xl leading-[1.1] md:text-5xl lg:text-6xl max-w-[20ch]">
+            <h1 className="text-white font-serif text-4xl leading-[1.1] md:text-5xl lg:text-6xl max-w-[20ch] lg:mx-auto">
               {academyIntro.heading}
             </h1>
-            <h2 className="text-champagne/90 font-serif mt-6 max-w-[32ch] text-xl md:text-2xl leading-snug">
+            <h2 className="text-champagne/90 font-serif mt-6 max-w-[32ch] text-xl md:text-2xl leading-snug lg:mx-auto">
               {academyIntro.lead}
             </h2>
           </Reveal>
@@ -74,7 +74,7 @@ export default function AcademyPage() {
 
           {/* Programme Index */}
           <Reveal delay={0.2}>
-            <div className="flex flex-wrap gap-x-12 gap-y-6 lg:gap-x-16">
+            <div className="flex flex-wrap lg:justify-center gap-x-12 gap-y-6 lg:gap-x-16">
               {programmeCategories.map((prog, i) => (
                 <a 
                   key={prog.id} 
@@ -96,9 +96,9 @@ export default function AcademyPage() {
 
       {/* Intro Band */}
       <section className="bg-champagne py-16 lg:py-24 border-b border-graphite/10 relative z-40">
-        <Container>
+        <Container className="lg:flex lg:justify-center">
           <Reveal>
-            <p className="text-graphite text-[17px] md:text-lg leading-relaxed max-w-[55ch]">
+            <p className="text-graphite text-[17px] md:text-lg leading-relaxed max-w-[55ch] lg:text-justify lg:mx-auto">
               {academyIntro.body}
             </p>
           </Reveal>

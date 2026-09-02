@@ -41,7 +41,7 @@ export default function AboutPage() {
   return (
     <>
       {/* 1. Intro (Dark solid hero header) */}
-      <DarkSection className="pt-32 pb-16 lg:pt-48 lg:pb-24 relative">
+      <DarkSection className="pt-28 pb-12 lg:pt-36 lg:pb-16 relative">
         <Container className="grid lg:grid-cols-2 gap-16 lg:gap-24 items-start">
           <div className="max-w-[700px]">
             <Reveal>
@@ -126,7 +126,7 @@ export default function AboutPage() {
         <Container className="grid gap-12 lg:grid-cols-12 items-start">
           <div className="lg:col-span-4">
             <Reveal>
-              <Eyebrow className="text-gold-deep">{ourPhilosophy.eyebrow}</Eyebrow>
+              <Eyebrow tone="champagne">{ourPhilosophy.eyebrow}</Eyebrow>
               <h2 className="text-white mt-4 max-w-[20ch] font-serif text-3xl leading-tight lg:text-[2.5rem]">
                 {ourPhilosophy.heading}
               </h2>
