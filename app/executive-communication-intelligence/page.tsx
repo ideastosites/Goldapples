@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Image from "next/image";
-import { seo } from "@/content/seo";
+import { buildPageMetadata, seo } from "@/content/seo";
 import { Container } from "@/components/ui/Container";
 import { Reveal } from "@/components/ui/Reveal";
 import { Eyebrow } from "@/components/ui/Eyebrow";
@@ -20,10 +20,7 @@ import {
   privateInvitation,
 } from "@/content/executiveCommunicationIntelligence";
 
-export const metadata: Metadata = {
-  title: { absolute: seo.executiveCommunicationIntelligence.title },
-  description: seo.executiveCommunicationIntelligence.description,
-};
+export const metadata: Metadata = buildPageMetadata(seo.executiveCommunicationIntelligence);
 
 function ImagePlaceholder({
   label,

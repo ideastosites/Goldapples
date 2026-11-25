@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { seo } from "@/content/seo";
+import { buildPageMetadata, seo } from "@/content/seo";
 import { PageHero } from "@/components/sections/PageHero";
 import { Container } from "@/components/ui/Container";
 import { Reveal } from "@/components/ui/Reveal";
@@ -12,10 +12,7 @@ import {
   workImpactCta,
 } from "@/content/workImpact";
 
-export const metadata: Metadata = {
-  title: { absolute: seo.workAndImpact.title },
-  description: seo.workAndImpact.description,
-};
+export const metadata: Metadata = buildPageMetadata(seo.workAndImpact);
 
 export default function WorkAndImpactPage() {
   return (

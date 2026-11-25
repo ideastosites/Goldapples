@@ -1,13 +1,10 @@
 import type { Metadata } from "next";
+import { buildPageMetadata, seo } from "@/content/seo";
 import { PageHero } from "@/components/sections/PageHero";
 import { Container } from "@/components/ui/Container";
 import { footerContent } from "@/content/site";
 
-export const metadata: Metadata = {
-  title: { absolute: "Privacy Policy | Goldapples Media Associates" },
-  description:
-    "How Goldapples Media Associates handles the information you share with us.",
-};
+export const metadata: Metadata = buildPageMetadata(seo.privacyPolicy);
 
 export default function PrivacyPolicyPage() {
   return (

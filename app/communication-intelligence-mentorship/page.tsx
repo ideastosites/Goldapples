@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Image from "next/image";
-import { seo } from "@/content/seo";
+import { buildPageMetadata, seo } from "@/content/seo";
 import { Container } from "@/components/ui/Container";
 import { Reveal } from "@/components/ui/Reveal";
 import { Eyebrow } from "@/components/ui/Eyebrow";
@@ -19,10 +19,7 @@ import {
   mentorshipInvitation,
 } from "@/content/communicationIntelligenceMentorship";
 
-export const metadata: Metadata = {
-  title: { absolute: seo.communicationIntelligenceMentorship.title },
-  description: seo.communicationIntelligenceMentorship.description,
-};
+export const metadata: Metadata = buildPageMetadata(seo.communicationIntelligenceMentorship);
 
 function ImagePlaceholder({
   label,

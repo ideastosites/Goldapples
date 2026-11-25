@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { seo } from "@/content/seo";
+import { buildPageMetadata, seo } from "@/content/seo";
 import { Container } from "@/components/ui/Container";
 import { Reveal } from "@/components/ui/Reveal";
 import { Eyebrow } from "@/components/ui/Eyebrow";
@@ -16,10 +16,7 @@ import {
   advisoryCta,
 } from "@/content/advisory";
 
-export const metadata: Metadata = {
-  title: { absolute: seo.advisory.title },
-  description: seo.advisory.description,
-};
+export const metadata: Metadata = buildPageMetadata(seo.advisory);
 
 export default function AdvisoryPage() {
   return (

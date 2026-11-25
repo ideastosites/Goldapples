@@ -1,5 +1,5 @@
 import { Metadata } from "next";
-import { seo } from "@/content/seo";
+import { buildPageMetadata, seo } from "@/content/seo";
 import { Container } from "@/components/ui/Container";
 import { Reveal } from "@/components/ui/Reveal";
 import { SignalDivider } from "@/components/ui/SignalDivider";
@@ -7,10 +7,7 @@ import { SignalMotif } from "@/components/ui/SignalMotif";
 import { ContactForm } from "@/components/sections/ContactForm";
 import { contactContent } from "@/content/contact";
 
-export const metadata: Metadata = {
-  title: { absolute: seo.contact.title },
-  description: seo.contact.description,
-};
+export const metadata: Metadata = buildPageMetadata(seo.contact);
 
 export default function ContactPage() {
   return (

@@ -4,6 +4,14 @@ import "./globals.css";
 import { Nav } from "@/components/layout/Nav";
 import { Footer } from "@/components/layout/Footer";
 import { GrainOverlay } from "@/components/layout/GrainOverlay";
+import { WhatsAppFloat } from "@/components/layout/WhatsAppFloat";
+import {
+  SITE_ICON_PATH,
+  SITE_NAME,
+  SITE_OG_IMAGE,
+  SITE_URL,
+  seo,
+} from "@/content/seo";
 
 const fraunces = Fraunces({
   variable: "--font-fraunces",
@@ -22,23 +30,42 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL(SITE_URL),
   title: {
-    default: "Communication Intelligence and Executive Advisory",
-    template: "%s | Goldapples Media Associates",
+    default: seo.home.title,
+    template: `%s | ${SITE_NAME}`,
   },
-  description:
-    "Goldapples Media Associates is a communication advisory, executive education, and development communication firm helping leaders and institutions strengthen understanding, trust, alignment, and action.",
+  description: seo.home.description,
+  keywords: [
+    "Communication Intelligence",
+    "Executive Communication Advisory",
+    "Leadership Communication",
+    "Development Communication",
+    "Goldapples Media Associates",
+    "Strategic Communication Nigeria",
+    "Executive Education",
+  ],
+  authors: [{ name: SITE_NAME }],
+  creator: SITE_NAME,
+  publisher: SITE_NAME,
   openGraph: {
-    title: "Communication Intelligence and Executive Advisory",
-    description:
-      "Goldapples Media Associates is a communication advisory, executive education, and development communication firm helping leaders and institutions strengthen understanding, trust, alignment, and action.",
-    siteName: "Goldapples Media Associates",
+    siteName: SITE_NAME,
+    locale: "en_GB",
     type: "website",
+    images: [SITE_OG_IMAGE],
+  },
+  twitter: {
+    card: "summary",
+    images: [SITE_ICON_PATH],
   },
   icons: {
-    icon: "/assets/logo/goldapples-icon-512.png",
-    shortcut: "/assets/logo/goldapples-icon-512.png",
-    apple: "/assets/logo/goldapples-icon-512.png",
+    icon: SITE_ICON_PATH,
+    shortcut: SITE_ICON_PATH,
+    apple: SITE_ICON_PATH,
+  },
+  robots: {
+    index: true,
+    follow: true,
   },
 };
 
@@ -48,11 +75,15 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       lang="en"
       className={`${fraunces.variable} ${inter.variable} ${jetbrainsMono.variable} h-full antialiased`}
     >
-      <body className="text-graphite flex min-h-full flex-col bg-white font-sans" suppressHydrationWarning>
+      <body
+        className="text-graphite flex min-h-full flex-col bg-white font-sans"
+        suppressHydrationWarning
+      >
         <GrainOverlay />
         <Nav />
         <main className="flex-1">{children}</main>
         <Footer />
+        <WhatsAppFloat />
       </body>
     </html>
   );

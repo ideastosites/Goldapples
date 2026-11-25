@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { seo } from "@/content/seo";
+import { buildPageMetadata, seo } from "@/content/seo";
 import { Container } from "@/components/ui/Container";
 import { Reveal } from "@/components/ui/Reveal";
 import { Eyebrow } from "@/components/ui/Eyebrow";
@@ -22,10 +22,7 @@ import {
   aspiration,
 } from "@/content/about";
 
-export const metadata: Metadata = {
-  title: { absolute: seo.about.title },
-  description: seo.about.description,
-};
+export const metadata: Metadata = buildPageMetadata(seo.about);
 
 // Map each differentiator to an icon from the custom set
 const differentiatorIcons = [

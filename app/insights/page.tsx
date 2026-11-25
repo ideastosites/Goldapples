@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { seo } from "@/content/seo";
+import { buildPageMetadata, seo } from "@/content/seo";
 import { Container } from "@/components/ui/Container";
 import { Reveal } from "@/components/ui/Reveal";
 import { Eyebrow } from "@/components/ui/Eyebrow";
@@ -22,10 +22,7 @@ import {
 
 export const dynamic = "force-dynamic";
 
-export const metadata: Metadata = {
-  title: { absolute: seo.insights.title },
-  description: seo.insights.description,
-};
+export const metadata: Metadata = buildPageMetadata(seo.insights);
 
 export default function InsightsPage() {
   const cmsData = getCmsData();

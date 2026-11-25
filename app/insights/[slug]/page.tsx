@@ -1,6 +1,7 @@
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import type { Metadata } from "next";
+import { buildPageMetadata } from "@/content/seo";
 import { Container } from "@/components/ui/Container";
 import { DarkSection } from "@/components/ui/DarkSection";
 import { SignalDivider } from "@/components/ui/SignalDivider";
@@ -17,13 +18,22 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { slug } = await params;
   const post = getPostBySlug(slug);
-  if (!post) {
-    return { title: "Article Not Found | Goldapples" };
+  if (!post || post.status !== "published") {
+    return buildPageMetadata({
+      title: "Article Not Found | Goldapples Insights",
+      description:
+        "The requested insight article could not be found on Goldapples Media Associates.",
+      path: `/insights/${slug}`,
+    });
   }
-  return {
+  return buildPageMetadata({
     title: `${post.title} | Goldapples Insights`,
     description: post.excerpt,
-  };
+    path: `/insights/${slug}`,
+    type: "article",
+    publishedTime: post.publishedAt,
+    authors: post.author ? [post.author] : ["Goldapples Media Associates"],
+  });
 }
 
 export default async function InsightArticlePage({

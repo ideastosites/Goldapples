@@ -1,4 +1,5 @@
 import { Metadata } from "next";
+import { buildPageMetadata, seo } from "@/content/seo";
 import { Container } from "@/components/ui/Container";
 import { Reveal } from "@/components/ui/Reveal";
 import { academyIntro, programmeCategories, deliveryFormats, academyCta } from "@/content/academy";
@@ -9,11 +10,7 @@ import {
   GraduationCap, Users, TestTube, Sparkles, Building2
 } from "lucide-react";
 
-export const metadata: Metadata = {
-  title: "Executive Communication Training and Masterclasses | Goldapples Academy",
-  description:
-    "Practical executive communication training, leadership communication labs, workshops and masterclasses for professionals, teams and institutions.",
-};
+export const metadata: Metadata = buildPageMetadata(seo.academy);
 
 // Helper for mapping format strings to line icons
 const getFormatIcon = (format: string) => {

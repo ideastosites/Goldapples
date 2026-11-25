@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { seo } from "@/content/seo";
+import { buildPageMetadata, seo } from "@/content/seo";
 import { PageHero } from "@/components/sections/PageHero";
 import { Container } from "@/components/ui/Container";
 import { Reveal } from "@/components/ui/Reveal";
@@ -17,10 +17,7 @@ import {
   frameworksCta,
 } from "@/content/frameworks";
 
-export const metadata: Metadata = {
-  title: { absolute: seo.frameworks.title },
-  description: seo.frameworks.description,
-};
+export const metadata: Metadata = buildPageMetadata(seo.frameworks);
 
 export default function FrameworksPage() {
   return (

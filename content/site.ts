@@ -26,6 +26,12 @@ export const footerContent = {
     ],
   },
   email: "gold@goldapples.ng",
+  whatsapp: {
+    displayNumber: "+234 817 329 2006",
+    number: "2348173292006",
+    prefillMessage:
+      "Hello Goldapples, I would like to discuss a communication challenge.",
+  },
   location: "Lagos, Nigeria",
   copyright: "© 2026 Goldapples Media Associates Limited. All rights reserved.",
   designer: {
