@@ -3,3 +3,4 @@ deployment:
   tasks:
     - export DEPLOYPATH=/home/itooknow/goldapples-app/
     - /bin/cp -R * $DEPLOYPATH
+    - /bin/cp -R .next $DEPLOYPATH
